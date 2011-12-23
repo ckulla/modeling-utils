@@ -19,11 +19,17 @@ public class XtendEmfFactoryGenerator implements IWorkflowComponent {
 
 	String genModel;
 	
+	String outputFolder;
+	
 	@Mandatory
 	public void setGenModel (String s) {
 		genModel = s;
 	}
-	
+
+	public void setOutputFolder (String s) {
+		outputFolder = s;
+	}
+
 	@Override
 	public void preInvoke() {
 		new ResourceSetImpl().getResource(URI.createURI(genModel), true);
@@ -36,12 +42,14 @@ public class XtendEmfFactoryGenerator implements IWorkflowComponent {
 		final GenModel genModel = (GenModel) resource.getContents().get(0);
 		
 		final Generator generator = Guice.createInjector().getInstance(Generator.class);
-		
+		if (outputFolder != null) {
+			generator.setOutputFolder(outputFolder);
+		}
 		log.info("Generating Xtend EMF factory code for "+this.genModel);
 
 		for (GenPackage p : genModel.getGenPackages()) {
 			log.info("Generating factory for package " +  p.getEcorePackage().getName());
-			generator.generateFactory("../", p, genModel);			
+			generator.generateFactory(p, genModel);			
 		}
 	}
 

@@ -10,7 +10,14 @@ import java.io.FileWriter
 
 class Generator {
 
-	@Inject ImportManager importManager
+ 	@Inject 
+ 	ImportManager importManager
+
+	String outputFolder = "../"
+
+	def setOutputFolder (String s) {
+		this.outputFolder = s
+	}
 
 	def javaPackage (GenPackage p) {
 		p.basePackage + "." + p.ecorePackage.name
@@ -32,12 +39,12 @@ class Generator {
 		javaPackage (p) + ".util"
 	}
 	
-	def targetFileName (String outputFolder, GenPackage p, GenModel m) {
+	def targetFileName (GenPackage p, GenModel m) {
 		outputFolder + m.modelDirectory.substring(1) + "/" + targetPackageName(p).replaceAll("\\.","/") + "/" + targetClassName(p) + ".xtend";	
 	}
 	
-	def generateFactory (String outputFolder, GenPackage p, GenModel m) {
-		val f = new File (targetFileName (outputFolder, p, m));
+	def generateFactory (GenPackage p, GenModel m) {
+		val f = new File (targetFileName (p, m));
 		f.getParentFile().mkdirs();
 		val fw = new FileWriter (f);
 		fw.append(expand(p,m));

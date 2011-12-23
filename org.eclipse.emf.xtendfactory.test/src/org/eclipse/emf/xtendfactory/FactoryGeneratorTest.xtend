@@ -66,8 +66,8 @@ class FactoryGeneratorTest {
 		try {		
 			doStandaloneSetup
 			val genModel = loadGenModel
-			factoryGenerator.generateFactory("../", genModel.genPackages.get(0), genModel)
-			assertTrue (new File (factoryGenerator.targetFileName("../", genModel.genPackages.get(0), genModel)).exists());
+			factoryGenerator.generateFactory(genModel.genPackages.get(0), genModel)
+			assertTrue (new File (factoryGenerator.targetFileName(genModel.genPackages.get(0), genModel)).exists());
 		} finally {
 			FileUtils::deleteRecursive(new File("test-gen").listFiles);
 		}

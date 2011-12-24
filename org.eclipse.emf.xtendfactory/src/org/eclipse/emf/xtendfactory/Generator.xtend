@@ -11,7 +11,7 @@ import java.io.FileWriter
 class Generator {
 
  	@Inject 
- 	ImportManager importManager
+ 	extension ImportManager importManager
 
 	String outputFolder = "../"
 
@@ -24,11 +24,11 @@ class Generator {
 	}
 	
 	def emfFactoryClassName (GenPackage p) {
-		importManager.getClassName (javaPackage (p) + "." + p.prefix + "Factory")
+		javaPackage (p) + "." + p.prefix + "Factory"
 	}
 	
 	def javaClassifierName (EClassifier c, GenPackage p) {
-		importManager.getClassName(javaPackage (p) + "." + c.name)
+		javaPackage (p) + "." + c.name
 	}	
 
 	def targetClassName (GenPackage p) {
@@ -61,14 +61,15 @@ class Generator {
 	
 	def expand (GenPackage p, GenModel m) {
 		importManager.setPackageName (p.targetPackageName)
+		importManager.setClassName (p.targetClassName)
 		
 		val factoryClass = 	
 			'''
 			class «p.targetClassName» {
 				
 				«FOR c: p.ecorePackage.getEClassifiers().filter[it.includeClassifier]»
-				def create«c.name.toFirstUpper»( («c.javaClassifierName(p)») => void initializer) {
-					initialize («p.emfFactoryClassName»::eINSTANCE.create«c.name»(), initializer)
+				def create«c.name.toFirstUpper»( («importedName (c.javaClassifierName(p))») => void initializer) {
+					initialize («importedName (p.emfFactoryClassName)»::eINSTANCE.create«c.name»(), initializer)
 				}
 				
 				«ENDFOR»		
@@ -80,6 +81,8 @@ class Generator {
 			}
 			'''
 		'''	
+		package «packageName»
+		
 		«importManager.expand()»
 		
 		«factoryClass»

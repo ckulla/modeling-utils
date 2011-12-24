@@ -45,10 +45,19 @@ class ImportManager {
 		}
 	}
 	
-	def expand () {
+	/**
+	 * Returns the import declaration section that should be added to the generated
+	 * file.
+	 * 
+	 * The imports are sorted by package name and class name. An additional empty line
+	 * is inserted between pacakges. 
+	 */
+	def importDeclarations () {
 		'''
-		«FOR c:importedClasses.sort»
+		«FOR p:importedClasses.map [ it.packageName ].toSet.sort SEPARATOR System::getProperty("line.separator")»
+		«FOR c:importedClasses.filter [ it.packageName == p ].sort»
 		import «c»;
+		«ENDFOR»
 		«ENDFOR»
 		'''
 	}

@@ -83,7 +83,7 @@ class Generator {
 		'''	
 		package «packageName»
 		
-		«importManager.expand()»
+		«importManager.importDeclarations»
 		
 		«factoryClass»
 		'''

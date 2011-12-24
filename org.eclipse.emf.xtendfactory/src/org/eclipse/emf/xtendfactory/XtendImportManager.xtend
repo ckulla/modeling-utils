@@ -4,8 +4,8 @@ import org.eclipse.emf.xtendfactory.ImportManager
 
 class XtendImportManager extends ImportManager {
 	
-	override expand () {
-		super.expand().toString().replaceAll (";","")
+	override importDeclarations () {
+		super.importDeclarations.toString.replaceAll (";","")
 	}
 	
 }

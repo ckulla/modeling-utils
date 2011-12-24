@@ -24,20 +24,20 @@ class ImportManagerTest {
 	@Test
 	def void testImportIteself () {
 		assertEquals ("Foo", importManager.getImportedName("org.eclipse.foo.Foo"))
-		assertEquals ("", importManager.expand.toString)
+		assertEquals ("", importManager.importDeclarations.toString)
 	}
 
 	@Test
 	def void testImportClassInSamePackage () {
 		assertEquals ("Bar", importManager.getImportedName("org.eclipse.foo.Bar"))
 		assertEquals ("Bar", importManager.getImportedName("org.eclipse.foo.Bar"))
-		assertEquals ("", importManager.expand.toString)
+		assertEquals ("", importManager.importDeclarations.toString)
 	}
 
 	@Test
 	def void testImportClassInOtherPackage () {
 		assertEquals ("Bar", importManager.getImportedName("org.eclipse.bar.Bar"))
-		assertEquals ("import org.eclipse.bar.Bar;\n", importManager.expand.toString)
+		assertEquals ("import org.eclipse.bar.Bar;\n", importManager.importDeclarations.toString)
 	}
 
 	@Test
@@ -45,7 +45,7 @@ class ImportManagerTest {
 		assertEquals ("Bar", importManager.getImportedName("org.eclipse.foo.Bar"))		
 		assertEquals ("org.eclipse.bar.Bar", importManager.getImportedName("org.eclipse.bar.Bar"))
 		assertEquals ("Bar", importManager.getImportedName("org.eclipse.foo.Bar"))		
-		assertEquals ("", importManager.expand.toString)
+		assertEquals ("", importManager.importDeclarations.toString)
 	}
 
 	@Test
@@ -53,7 +53,19 @@ class ImportManagerTest {
 		assertEquals ("Bar", importManager.getImportedName("org.eclipse.bar.Bar"))
 		assertEquals ("org.eclipse.foo.Bar", importManager.getImportedName("org.eclipse.foo.Bar"))		
 		assertEquals ("Bar", importManager.getImportedName("org.eclipse.bar.Bar"))
-		assertEquals ("import org.eclipse.bar.Bar;\n", importManager.expand.toString)
+		assertEquals ("import org.eclipse.bar.Bar;\n", importManager.importDeclarations.toString)
+	}
+
+	@Test
+	def void testImportFromMultiplePackages () {
+		assertEquals ("Bar", importManager.getImportedName("org.eclipse.bar.Bar"))
+		assertEquals ("Baz", importManager.getImportedName("org.eclipse.baz.Baz"))
+
+		assertEquals ('''
+			import org.eclipse.bar.Bar;
+			
+			import org.eclipse.baz.Baz;
+		'''.toString, importManager.importDeclarations.toString)
 	}
 
 }

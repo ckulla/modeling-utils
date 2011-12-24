@@ -48,7 +48,7 @@ class ImportManager {
 	def expand () {
 		'''
 		«FOR c:importedClasses.sort»
-		import «c»
+		import «c»;
 		«ENDFOR»
 		'''
 	}

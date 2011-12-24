@@ -37,7 +37,7 @@ class ImportManagerTest {
 	@Test
 	def void testImportClassInOtherPackage () {
 		assertEquals ("Bar", importManager.getImportedName("org.eclipse.bar.Bar"))
-		assertEquals ("import org.eclipse.bar.Bar\n", importManager.expand.toString)
+		assertEquals ("import org.eclipse.bar.Bar;\n", importManager.expand.toString)
 	}
 
 	@Test
@@ -53,7 +53,7 @@ class ImportManagerTest {
 		assertEquals ("Bar", importManager.getImportedName("org.eclipse.bar.Bar"))
 		assertEquals ("org.eclipse.foo.Bar", importManager.getImportedName("org.eclipse.foo.Bar"))		
 		assertEquals ("Bar", importManager.getImportedName("org.eclipse.bar.Bar"))
-		assertEquals ("import org.eclipse.bar.Bar\n", importManager.expand.toString)
+		assertEquals ("import org.eclipse.bar.Bar;\n", importManager.expand.toString)
 	}
 
 }

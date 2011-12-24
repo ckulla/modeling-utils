@@ -11,7 +11,7 @@ import java.io.FileWriter
 class Generator {
 
  	@Inject 
- 	extension ImportManager importManager
+ 	extension XtendImportManager importManager
 
 	String outputFolder = "../"
 

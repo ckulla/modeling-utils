@@ -8,7 +8,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({ 
 	FactoryGeneratorTest.class,
 	Mwe2ExecutionTest.class,
-	ImportManagerTest.class
+	ImportManagerTest.class,
+	XtendImportManagerTest.class
 })
 public class AllTests {
 

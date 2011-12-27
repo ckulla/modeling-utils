@@ -30,20 +30,32 @@ class ImportManager {
 		getImportedName(qualifiedName)
 	}
 
-	def getImportedName(String qualifiedName) {
-		if (isClassImported (className (qualifiedName))) {			
-			if (isQuailfiedNameImported(qualifiedName))
-				return className (qualifiedName)
-			else
-				return qualifiedName
+	def String getImportedName(String qualifiedName) {
+		if (qualifiedName.contains ("$")) {
+			return 
+				if (isQuailfiedNameImported(qualifiedName.replaceAll ("\\$", ".")))
+					getImportedName(qualifiedName.replaceAll ("\\$", "."))
+				else
+					normalize (getImportedName (qualifiedName.withoutInner) + "$" + qualifiedName.inner)
 		} else {
-			if (isInPackage (qualifiedName, packageName)) 			
-				implicitClasses.add (qualifiedName)
-			else
-				importedClasses.add (qualifiedName)				
-			return className (qualifiedName)		
+			if (isClassImported (className (qualifiedName))) {			
+				if (isQuailfiedNameImported(qualifiedName))
+					return className (qualifiedName)
+				else
+					return qualifiedName
+			} else {
+				if (isInPackage (qualifiedName, packageName)) 			
+					implicitClasses.add (qualifiedName.withoutInner)
+				else
+					importedClasses.add (qualifiedName.withoutInner)				
+				return className (qualifiedName)		
+			}
 		}
 	}
+	
+	def protected normalize (String s) {
+		s.replaceAll ("\\$", ".")
+	} 
 	
 	/**
 	 * Returns the import declaration section that should be added to the generated
@@ -67,7 +79,23 @@ class ImportManager {
 	}
 
 	def protected className (String qualifiedName) {
-		qualifiedName.substring(qualifiedName.lastIndexOf(".")+1);	
+		qualifiedName.substring(qualifiedName.lastIndexOf(".")+1);
+	}
+
+	def withoutInner (String qualifiedName) {
+		if (qualifiedName.contains ("$")) {
+			qualifiedName.substring (0, qualifiedName.indexOf ("$"))
+		} else {
+			qualifiedName
+		}
+	}
+
+	def inner (String qualifiedName) {
+		if (qualifiedName.contains ("$")) {
+			qualifiedName.substring (qualifiedName.indexOf ("$")+1)
+		} else {
+			qualifiedName
+		}		
 	}
 	
 	def protected isInPackage (String qualifiedName, String packageName) {

@@ -68,4 +68,19 @@ class ImportManagerTest {
 		'''.toString, importManager.importDeclarations.toString)
 	}
 
+	@Test
+	def void testImportInnerClass () {
+		assertEquals ("Bar.Baz", importManager.getImportedName("org.eclipse.bar.Bar$Baz"))
+		assertEquals ("Bar.Baz", importManager.getImportedName("org.eclipse.bar.Bar$Baz"))
+		assertEquals ("Baz", importManager.getImportedName("org.eclipse.bar.Bar.Baz"))
+		assertEquals ("Baz", importManager.getImportedName("org.eclipse.bar.Bar$Baz"))
+		assertEquals ("org.eclipse.baz.Bar.Baz", importManager.getImportedName("org.eclipse.baz.Bar$Baz"))
+		assertEquals ('''
+			import org.eclipse.bar.Bar;
+
+			import org.eclipse.bar.Bar.Baz;
+			'''.toString,
+			importManager.importDeclarations.toString)
+	}
+
 }

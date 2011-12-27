@@ -24,7 +24,7 @@ class ImportManagerTest {
 	@Test
 	def void testImportIteself () {
 		assertEquals ("Foo", importManager.getImportedName("org.eclipse.foo.Foo"))
-		assertEquals ("", importManager.importDeclarations.toString)
+		org::junit::Assert::assertEquals ("", importManager.importDeclarations.toString)
 	}
 
 	@Test
@@ -83,4 +83,38 @@ class ImportManagerTest {
 			importManager.importDeclarations.toString)
 	}
 
+	@Test
+	def void testStaticImports () {
+		assertEquals ("assertEquals", importManager.staticImportedName("org.junit.Assert.assertEquals"))
+		assertEquals ('''
+			import static org.junit.Assert.assertEquals;
+			'''.toString,
+			importManager.importDeclarations.toString)
+	}
+	
+	@Test
+	def void testStaticImportsWithWildcard () {
+		importManager.addStaticImport("org.junit.Assert.*");
+		assertEquals ("assertEquals", importManager.staticImportedName("org.junit.Assert.assertEquals"))
+		assertEquals ('''
+			import static org.junit.Assert.*;
+			'''.toString,
+			importManager.importDeclarations.toString)
+	}
+
+	@Test
+	def void testStaticDuplicates () {
+		assertEquals ("assertEquals", importManager.staticImportedName("org.junit.Assert.assertEquals"))
+		assertEquals ("org.junit.Bssert.assertEquals", importManager.staticImportedName("org.junit.Bssert.assertEquals"))
+		assertEquals ('''
+			import static org.junit.Assert.assertEquals;
+			'''.toString,
+			importManager.importDeclarations.toString)
+	}
+
+	@Test
+	def void testStaticFromDefiningClass () {
+		assertEquals ("assertEquals", importManager.staticImportedName("org.eclipse.foo.Foo.assertEquals"))
+		assertEquals ("", importManager.importDeclarations.toString)
+	}	
 }

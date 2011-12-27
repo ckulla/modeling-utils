@@ -11,5 +11,9 @@ class XtendImportManager extends ImportManager {
 	override protected normalize (String s) {
 		s
 	} 
+
+	override protected normalizeStatic (String s) {
+		s.replaceAll ("\\.","::")
+	} 
 	
 }

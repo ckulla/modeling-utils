@@ -106,8 +106,11 @@ class ImportManagerTest {
 	def void testStaticDuplicates () {
 		assertEquals ("assertEquals", importManager.staticImportedName("org.junit.Assert.assertEquals"))
 		assertEquals ("org.junit.Bssert.assertEquals", importManager.staticImportedName("org.junit.Bssert.assertEquals"))
+		assertEquals ("assertNotEquals", importManager.staticImportedName("org.junit.Cssert.assertNotEquals"))
 		assertEquals ('''
 			import static org.junit.Assert.assertEquals;
+
+			import static org.junit.Cssert.assertNotEquals;
 			'''.toString,
 			importManager.importDeclarations.toString)
 	}

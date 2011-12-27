@@ -8,7 +8,7 @@ class XtendImportManager extends ImportManager {
 		super.importDeclarations.toString.replaceAll (";","")
 	}
 	
-	override protected normalize (String s) {
+	override protected normalizeClassName (String s) {
 		s
 	} 
 

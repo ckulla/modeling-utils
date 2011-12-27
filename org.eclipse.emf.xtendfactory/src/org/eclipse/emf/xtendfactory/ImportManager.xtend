@@ -2,18 +2,37 @@ package org.eclipse.emf.xtendfactory
 
 import java.util.Set
 
+/**
+ * An import manager keeps track of imported classes during java code generation. 
+ * Whenever you want to refer to a java class you have to call the importedName 
+ * method with the full qualified name of the class. The import manager tries to
+ * add the class to the list of imported names (and checks conflicts with already
+ * imported classes). It will return either the full qualified name or the shortend 
+ * name due to an import statement.
+ *
+ * <p>The import manager support static imports as well. Use the method 
+ * staticImportedName() instead. You can preregister static imports by calling 
+ * addStaticImport() (for example addStaticImport ("org.junit.Assert.*"), 
+ * staticImportedName("org.junit.Assert.assertEquals") returns "assertEquals").
+ * 
+ * <p>You have to initialize an import manager by calling setPackageName() and 
+ * setClassName().
+ * 
+ * <p>You can get the import section of the java file later on by calling 
+ * importDeclarations().
+ */
 class ImportManager {
 
 	String packageName
 
 	String className
 	
-	Set<String> staticImports = newHashSet()
-	
 	Set<String> importedClasses = newHashSet()
 	
 	Set<String> implicitClasses = newHashSet()
-	
+
+	Set<String> staticImports = newHashSet()
+		
 	def setPackageName (String packageName) {
 		this.packageName = packageName
 	}	
@@ -64,7 +83,7 @@ class ImportManager {
 				if (isQuailfiedNameImported(qualifiedName.replaceAll ("\\$", ".")))
 					getImportedName(qualifiedName.replaceAll ("\\$", "."))
 				else
-					normalize (getImportedName (qualifiedName.withoutInner) + "$" + qualifiedName.inner)
+					normalizeClassName (getImportedName (qualifiedName.withoutInner) + "$" + qualifiedName.inner)
 		} else {
 			if (isClassImported (className (qualifiedName))) {			
 				if (isQuailfiedNameImported(qualifiedName))
@@ -81,7 +100,7 @@ class ImportManager {
 		}
 	}
 	
-	def protected normalize (String s) {
+	def protected normalizeClassName (String s) {
 		s.replaceAll ("\\$", ".")
 	} 
 
@@ -136,7 +155,7 @@ class ImportManager {
 		qualifiedName.substring(0, qualifiedName.lastIndexOf("."));
 	}
 	
-	def withoutInner (String qualifiedName) {
+	def protected withoutInner (String qualifiedName) {
 		if (qualifiedName.contains ("$")) {
 			qualifiedName.substring (0, qualifiedName.indexOf ("$"))
 		} else {
@@ -144,7 +163,7 @@ class ImportManager {
 		}
 	}
 
-	def inner (String qualifiedName) {
+	def protected inner (String qualifiedName) {
 		if (qualifiedName.contains ("$")) {
 			qualifiedName.substring (qualifiedName.indexOf ("$")+1)
 		} else {

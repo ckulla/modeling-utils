@@ -14,7 +14,6 @@
 	<name>Xtend2 Utilities</name>
 
 	<modules>
-		<module>../../releng/org.ckulla.xtend2utils.targetplatform</module>
 		<module>../../releng/org.ckulla.xtend2utils.parent</module>
 	</modules>
 	<profiles>

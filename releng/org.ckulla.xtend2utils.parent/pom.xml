@@ -149,6 +149,46 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-clean-plugin</artifactId>
 					<version>2.4.1</version>
+					<configuration>
+						<filesets>
+							<fileset>
+								<directory>${basedir}/xtend-gen</directory>
+								<includes>
+										<include>**</include>
+								</includes>                            
+								<excludes>
+									<exclude>.gitignore</exclude>
+								</excludes>
+							</fileset>
+							<fileset>
+								<directory>${basedir}/src-gen</directory>
+								<includes>
+										<include>**</include>
+								</includes>                            
+								<excludes>
+									<exclude>.gitignore</exclude>
+								</excludes>
+							</fileset>
+							<fileset>
+								<directory>${basedir}/emf-gen</directory>
+								<includes>
+										<include>**</include>
+								</includes>                            
+								<excludes>
+									<exclude>.gitignore</exclude>
+								</excludes>
+							</fileset>
+							<fileset>
+								<directory>${basedir}/test-gen</directory>
+								<includes>
+										<include>**</include>
+								</includes>                            
+								<excludes>
+									<exclude>.gitignore</exclude>
+								</excludes>
+							</fileset>
+						</filesets>
+					</configuration>					
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -223,7 +263,7 @@
 						<!-- need to prefix by basedir to generate to currently built module -->
 						<outputDirectory>${basedir}/xtend-gen</outputDirectory>
 					</configuration>
-				</plugin>
+				</plugin>				
 			</plugins>
 		</pluginManagement>
 	</build>

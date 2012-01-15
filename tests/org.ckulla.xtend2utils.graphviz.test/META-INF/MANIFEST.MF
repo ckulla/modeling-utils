@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EMF Graphviz Test
+Bundle-SymbolicName:  org.ckulla.xtend2utils.graphviz.test
+Bundle-Version: 0.1.0.qualifier
+Fragment-Host: org.ckulla.xtend2utils.graphviz;bundle-version="0.1.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.junit,
+ org.junit.contrib.eclipse.import;bundle-version="0.0.1",
+ javax.inject;bundle-version="1.0.0"

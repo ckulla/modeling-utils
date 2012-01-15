@@ -1,0 +1,14 @@
+Modules Overview
+-----------------
+
+/plugins :
+/releng :
+/tests :
+
+Tycho Notes
+------------
+
+* Java sources in additional directories are not compiled
+
+Check build.properties in your plug-in. Tycho reconfigures source directories to match those in the
+build.properties files

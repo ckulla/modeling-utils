@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="foo"
+    nsURI="foo" nsPrefix="foo">
+  <eClassifiers xsi:type="ecore:EClass" name="Foo" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qux" eType="#//Qux"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="barFromOtherEcore" lowerBound="1"
+        upperBound="-1" eType="ecore:EClass Bar.ecore#//Bar"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Qux">
+    <eLiterals name="aLiteral"/>
+    <eLiterals name="anotherLiteral" value="1"/>
+  </eClassifiers>
+  <eSubpackages name="bar" nsURI="bar" nsPrefix="bar">
+    <eClassifiers xsi:type="ecore:EClass" name="Bar" eSuperTypes="#//Foo">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="baz" eType="#//baz/Baz"
+          containment="true"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="baz" nsURI="baz" nsPrefix="baz">
+    <eClassifiers xsi:type="ecore:EClass" name="Baz" eSuperTypes="#//Foo">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="foo" upperBound="-1"
+          eType="#//Foo"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

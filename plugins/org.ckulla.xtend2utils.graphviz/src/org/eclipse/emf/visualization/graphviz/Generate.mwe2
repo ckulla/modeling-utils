@@ -1,0 +1,30 @@
+module org.eclipse.emf.visualization.graphviz.Generate
+
+import org.eclipse.emf.mwe.utils.StandaloneSetup
+import org.eclipse.emf.mwe.utils.DirectoryCleaner
+import org.ckulla.xtend2utils.emffactory.XtendEmfFactoryGenerator
+
+var projectName = "org.ckulla.xtend2utils.graphviz"
+var genModel = "platform:/resource/${projectName}/model/Graph.genmodel"
+
+Workflow {
+
+    bean = StandaloneSetup {
+        scanClassPath = true
+        platformUri = ".."
+    }
+    
+	component = DirectoryCleaner {
+		directory = "src-gen"
+	}
+
+	component = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
+		genModel = genModel
+		srcPath = "src"
+	}    
+	
+	component = XtendEmfFactoryGenerator {		
+		genModel = genModel
+	}
+	
+}

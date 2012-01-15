@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<!-- Tycho requires Maven 3 -->
+	<prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
+
+	<groupId>org.ckulla.xtend2utils</groupId>
+	<artifactId>org.ckulla.xtend2utils.build</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>Xtend2 Utilities</name>
+
+	<modules>
+		<module>../../releng/org.ckulla.xtend2utils.targetplatform</module>
+		<module>../../releng/org.ckulla.xtend2utils.parent</module>
+	</modules>
+	<profiles>
+		<profile>
+			<id>modules-default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>../../plugins/org.ckulla.xtend2utils.emffactory</module>
+				<module>../../plugins/org.ckulla.xtend2utils.graphviz</module>
+			    <module>../../plugins/org.ckulla.xtend2utils.graphviz.ui</module>
+				<module>../../tests/org.ckulla.xtend2utils.emffactory.test</module>
+ 				<module>../../tests/org.ckulla.xtend2utils.graphviz.test</module>
+			</modules>
+		</profile>
+<!--		
+		<profile>
+			<id>modules-targetplatform</id>
+			<activation>
+				<property>
+					<name>modules-targetplatform</name>
+				</property>
+			</activation>
+			<modules>
+				<module>../../releng/org.ckulla.xtend2utils.repository.parent</module>
+				<module>../../releng/org.ckulla.xtend2utils.repository</module>
+			</modules>
+		</profile>
+-->
+		<profile>
+			<id>modules-assembly</id>
+			<activation>
+				<property>
+					<name>modules-assembly</name>
+				</property>
+			</activation>
+			<modules>
+				<module>../../features/org.ckulla.xtend2utils.feature</module>
+				<module>../../features/org.ckulla.xtend2utils.feature.source</module>
+				<module>../../features/org.ckulla.xtend2utils.feature.sdk</module>
+				<module>../../releng/org.ckulla.xtend2utils.updatesite</module>
+<!--				
+				<module>../../devtools/org.ckulla.xtend2utils.dev.feature</module>
+				<module>../../devtools/org.ckulla.xtend2utils.dev.updatesite</module>
+-->				
+			</modules>
+		</profile>
+<!--		
+		<profile>
+			<id>modules-docs</id>
+			<activation>
+				<property>
+					<name>modules-docs</name>
+				</property>
+			</activation>
+			<modules>
+				<module>../../docs/org.ckulla.xtend2utils.doc.common</module>
+				<module>../../docs/org.ckulla.xtend2utils.doc.dev</module>
+				<module>../../docs/org.ckulla.xtend2utils.doc.user</module>
+			</modules>
+		</profile>
+-->
+	</profiles>
+</project>

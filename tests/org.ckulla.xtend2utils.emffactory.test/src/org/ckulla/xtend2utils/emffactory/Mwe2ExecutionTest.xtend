@@ -17,7 +17,7 @@ class Mwe2ExecutionTest {
 	
 	@After
 	def void cleanUp () {
-		FileUtils::deleteRecursive (new File ("test-gen").listFiles);		
+		FileUtils::deleteRecursive (new File ("test-gen"));		
 	}
 		
 }

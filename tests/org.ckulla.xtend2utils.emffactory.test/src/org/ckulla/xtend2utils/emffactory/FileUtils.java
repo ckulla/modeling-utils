@@ -5,12 +5,9 @@ import java.io.FileNotFoundException;
 
 public class FileUtils {
 	
-	public static void deleteRecursive(File[] files) throws FileNotFoundException {
-		for (File f: files)
-			deleteRecursive(f);
-	}
-	
-    public static boolean deleteRecursive(File path) throws FileNotFoundException{
+    public static boolean deleteRecursive(File path) throws FileNotFoundException {
+    	if (path.getName().equals (".gitignore")) return true;
+    	
         if (!path.exists()) throw new FileNotFoundException(path.getAbsolutePath());
         boolean ret = true;
         if (path.isDirectory()){

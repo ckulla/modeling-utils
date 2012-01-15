@@ -69,7 +69,7 @@ class FactoryGeneratorTest {
 			factoryGenerator.generateFactory(genModel.genPackages.get(0), genModel)
 			assertTrue (new File (factoryGenerator.targetFileName(genModel.genPackages.get(0), genModel)).exists());
 		} finally {
-			FileUtils::deleteRecursive(new File("test-gen").listFiles);
+			FileUtils::deleteRecursive(new File("test-gen"));
 		}
 	}	
 }

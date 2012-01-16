@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.ckulla.xtend2utils.feature.sdk"
+      label="%featureName"
+      version="0.1.0.qualifier"
+      provider-name="%providerName">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <update label="%updateSiteName" url=""/>
+   </url>
+
+   <includes
+         id="org.ckulla.xtend2utils.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.ckulla.xtend2utils.feature.source"
+         version="0.0.0"/>
+         
+   <plugin
+         id="org.ckulla.xtend2utils.emffactory.test"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.ckulla.xtend2utils.emffactory.test.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.ckulla.xtend2utils.graphviz.test"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.ckulla.xtend2utils.graphviz.test.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

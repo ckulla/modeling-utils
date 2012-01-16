@@ -26,8 +26,16 @@
 				<module>../../plugins/org.ckulla.xtend2utils.emffactory</module>
 				<module>../../plugins/org.ckulla.xtend2utils.graphviz</module>
 			    <module>../../plugins/org.ckulla.xtend2utils.graphviz.ui</module>
+
 				<module>../../tests/org.ckulla.xtend2utils.emffactory.test</module>
  				<module>../../tests/org.ckulla.xtend2utils.graphviz.test</module>
+
+				<module>../../features/org.ckulla.xtend2utils.feature</module>
+				<module>../../features/org.ckulla.xtend2utils.feature.source</module>
+				<module>../../features/org.ckulla.xtend2utils.feature.sdk</module>
+
+				<module>../../releng/org.ckulla.xtend2utils.updatesite</module>
+
 			</modules>
 		</profile>
 <!--		
@@ -44,24 +52,6 @@
 			</modules>
 		</profile>
 -->
-		<profile>
-			<id>modules-assembly</id>
-			<activation>
-				<property>
-					<name>modules-assembly</name>
-				</property>
-			</activation>
-			<modules>
-				<module>../../features/org.ckulla.xtend2utils.feature</module>
-				<module>../../features/org.ckulla.xtend2utils.feature.source</module>
-				<module>../../features/org.ckulla.xtend2utils.feature.sdk</module>
-				<module>../../releng/org.ckulla.xtend2utils.updatesite</module>
-<!--				
-				<module>../../devtools/org.ckulla.xtend2utils.dev.feature</module>
-				<module>../../devtools/org.ckulla.xtend2utils.dev.updatesite</module>
--->				
-			</modules>
-		</profile>
 <!--		
 		<profile>
 			<id>modules-docs</id>

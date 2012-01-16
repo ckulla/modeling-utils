@@ -16,7 +16,7 @@
         <sourceDirectory>src</sourceDirectory>    
         <resources>
                 <resource>
-                        <directory>${project.build.directory}/mwe2resources</directory>
+                        <directory>${project.build.directory}/mwe2</directory>
                 </resource>
         </resources>        
         <plugins>
@@ -30,7 +30,7 @@
                                             <goal>copy-resources</goal>
                                     </goals>
                                     <configuration>
-                                            <outputDirectory>${project.build.directory}/mwe2resources</outputDirectory>
+                                            <outputDirectory>${project.build.directory}/mwe2</outputDirectory>
                                             <resources>
                                                     <resource>
                                                             <directory>src</directory>

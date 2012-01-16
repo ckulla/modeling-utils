@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.ckulla.xtend2utils.feature_0.1.0.qualifier.jar" id="org.ckulla.xtend2utils.feature" version="0.1.0.qualifier">
+      <category name="xtend2utils"/>
+   </feature>
+   <feature url="features/org.ckulla.xtend2utils.feature.sdk_0.1.0.qualifier.jar" id="org.ckulla.xtend2utils.feature.sdk" version="0.1.0.qualifier">
+      <category name="xtend2utils"/>
+   </feature>
+   <feature url="features/org.ckulla.xtend2utils.feature.source_0.1.0.qualifier.jar" id="org.ckulla.xtend2utils.feature.source" version="0.1.0.qualifier">
+      <category name="xtend2utils"/>
+   </feature>
+   <category-def name="xtend2utils" label="Xtend2 Utilities"/>
+</site>

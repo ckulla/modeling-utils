@@ -11,5 +11,6 @@
 	</parent>
 
 	<artifactId>org.ckulla.xtend2utils.releng.updatesite</artifactId>
-	<packaging>eclipse-update-site</packaging>
+	<packaging>eclipse-repository</packaging>
+	
 </project>

@@ -28,8 +28,8 @@ if sys.argv.count >= 3:
 	call ("sed -i .bak 's/.qualifier//g' ../" + updatesiteDir + "/category.xml")
 	call ("./build.py clean verify")
 	call ("mv ../" + updatesiteDir + "/target/" + updatesiteDir + ".zip ../" + releaseDir + "/" + releaseDir + "-" + releaseVersion + ".zip")
-#	call ("git commit -a -m '[release]	Release " + releaseVersion + "'")
-#	call ("git tag v" + releaseVersion)
+	call ("git commit -a -m '[release]	Release " + releaseVersion + "'")
+	call ("git tag v" + releaseVersion)
 
 	# Setting the development version
 
@@ -37,7 +37,7 @@ if sys.argv.count >= 3:
 	call ("mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=" + devVersion + "-SNAPSHOT -Dlocal-build")
 	call ('sed -i .bak "s/' + releaseVersion + '/' + devVersion + '\.qualifier/g" ../' + updatesiteDir + '/category.xml')
 	call ("./build.py clean verify")
-#	call ("git commit -a -m '[release] Set version to " + devVersion + "-SNAPSHOT'")
+	call ("git commit -a -m '[release] Set version to " + devVersion + "-SNAPSHOT'")
 
 	print ("Release " + releaseVersion + " successfully created")
 	print ("Current development version is now " + devVersion + "-SNAPSHOT")

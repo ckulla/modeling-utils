@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name:  Xtend2Utils Graphviz
 Bundle-SymbolicName: org.ckulla.xtend2utils.graphviz;singleton:=true
-Bundle-Version: 0.1.0
+Bundle-Version: 0.2.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.7.0",
  org.eclipse.emf.ecore.xmi;bundle-version="2.7.0",

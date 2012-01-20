@@ -15,12 +15,30 @@
 	<properties>
 		<tycho-version>0.14.0-SNAPSHOT</tycho-version>
 		<junit-version>4.8.1</junit-version>
+<!--		
 		<eclipse-site>http://download.eclipse.org/releases/${platform-version-name}</eclipse-site>
 		<orbit-site>http://download.eclipse.org/tools/orbit/downloads/drops/R20110523182458/repository</orbit-site>
 		<platform-version-name>indigo</platform-version-name>
+-->
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 	</properties>
 
+	<modules>
+		<module>../../plugins/org.ckulla.xtend2utils.emffactory</module>
+		<module>../../plugins/org.ckulla.xtend2utils.graphviz</module>
+		<module>../../plugins/org.ckulla.xtend2utils.graphviz.ui</module>
+
+		<module>../../tests/org.ckulla.xtend2utils.emffactory.test</module>
+		<module>../../tests/org.ckulla.xtend2utils.graphviz.test</module>
+
+		<module>../../features/org.ckulla.xtend2utils.feature</module>
+		<module>../../features/org.ckulla.xtend2utils.feature.source</module>
+		<module>../../features/org.ckulla.xtend2utils.feature.sdk</module>
+
+		<module>../../releng/org.ckulla.xtend2utils.updatesite</module>
+
+	</modules>
+			
 	<build>
 		<plugins>
 			<plugin>

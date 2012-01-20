@@ -20,7 +20,7 @@ def createLocalRepositoryIfNotUpToDate ():
 
 def runMaven():
 	s = 'mvn ' + string.join (sys.argv[1:], ' ') + ' -Dlocal-build'
-	print "Calling " + '"' + s + "'"
+	print "Calling " + '"' + s + '"'
 	subprocess.call (s, shell=True)
 	
 createLocalRepositoryIfNotUpToDate()

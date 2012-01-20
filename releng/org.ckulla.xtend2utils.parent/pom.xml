@@ -15,11 +15,6 @@
 	<properties>
 		<tycho-version>0.14.0-SNAPSHOT</tycho-version>
 		<junit-version>4.8.1</junit-version>
-<!--		
-		<eclipse-site>http://download.eclipse.org/releases/${platform-version-name}</eclipse-site>
-		<orbit-site>http://download.eclipse.org/tools/orbit/downloads/drops/R20110523182458/repository</orbit-site>
-		<platform-version-name>indigo</platform-version-name>
--->
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 	</properties>
 
@@ -313,22 +308,15 @@
 		</pluginRepository>
 	</pluginRepositories>
 
+	<repositories>
+		<repository>
+			<id>xtend2utils-dependencies</id>
+			<layout>p2</layout>
+			<url>file:../../releng/org.ckulla.xtend2utils.repository/target/repository</url>
+		</repository>
+	</repositories>
+            
 	<profiles>
-        <profile>
-            <id>local-build</id>
-            <activation>
-                <property>
-                    <name>local-build</name>
-                </property>
-            </activation>
-            <repositories>
-                <repository>
-                    <id>xtend2utils-dependencies</id>
-                    <layout>p2</layout>
-                    <url>file:../../releng/org.ckulla.xtend2utils.repository/target/repository</url>
-                </repository>
-            </repositories>
-        </profile>
 		<profile>
 			<id>release</id>
 			<build>

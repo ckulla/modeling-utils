@@ -5,7 +5,9 @@ import subprocess
 import sys
 import string
 
-distributionDirectory = "../../releases"
+projectName = "org.ckulla.xtend2utils"
+releaseDir = projectName + ".releases"
+updatesiteDir = projectName + ".updatesite"
 
 def echo (s):
 	print ("[### Release ###] " + s)
@@ -17,24 +19,30 @@ def call (s):
 if sys.argv.count >= 3:
 
 	releaseVersion = sys.argv[1]
-	devVersionRaw = sys.argv[2]
-	devVersion = devVersionRaw + "-SNAPSHOT"
+	devVersion = sys.argv[2]
+
+	# Doing the release
 
 	echo ("Set new version to release version " + releaseVersion)
 	call ("mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=" + releaseVersion + " -Dlocal-build")
-	call ("sed -i .bak 's/.qualifier//g' ../org.ckulla.xtend2utils.updatesite/category.xml")
+	call ("sed -i .bak 's/.qualifier//g' ../" + updatesiteDir + "/category.xml")
 	call ("./build.py clean verify")
-#	print ("Run mv ../org.ckulla.xtend2utils.updatesite/target/org.ckulla.xtend2utils.releng.updatesite.zip ../org.ckulla.xtend2utils.updatesite/target/org.ckulla.xtend2utils.releng.updatesite-" + releaseVersion + ".zip")
+	call ("mv ../" + updatesiteDir + "/target/" + updatesiteDir + ".zip ../" + releaseDir + "/" + releaseDir + "-" + releaseVersion + ".zip")
+#	call ("git commit -a -m '[release]	Release " + releaseVersion + "'")
+#	call ("git tag v" + releaseVersion)
 
-#	print ("Run git commit -a -m '[release]	Prepare for release " + releaseVersion + "'")
-#	print ("Run git tag v" + releaseVersion)
-#	print ("Set new version to development version " + devVersion)
-#	print ("Run mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=" + devVersion)
-#	print ('Run sed -i .bak "s/' + releaseVersion + '/' + devVersionRaw + '\.qualifier/g" ../org.eclipselabs.spray.repository/category.xml')
-#	print ("Run ./build.py clean verify")
-#	print ("Run git commit -a -m '[release] Set version to " + devVersion + "'")
+	# Setting the development version
+
+	echo ("Set new version to development version " + devVersion + "-SNAPSHOT")
+	call ("mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=" + devVersion + "-SNAPSHOT -Dlocal-build")
+	call ('sed -i .bak "s/' + releaseVersion + '/' + devVersion + '\.qualifier/g" ../' + updatesiteDir + '/category.xml')
+	call ("./build.py clean verify")
+#	call ("git commit -a -m '[release] Set version to " + devVersion + "-SNAPSHOT'")
+
+	print ("Release " + releaseVersion + " successfully created")
+	print ("Current development version is now " + devVersion + "-SNAPSHOT")
 	
 else:
 	
 	printf ("Usage: release.py RELEASE_VERSION DEVELOPMENT_VERSION")
-	printf ("e.g. release.py 0.2 0.3")
+	printf ("e.g. release.py 0.2 0.3-SNAPSHOT")

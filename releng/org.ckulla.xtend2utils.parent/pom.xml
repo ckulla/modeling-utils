@@ -22,9 +22,11 @@
 		<module>../../plugins/org.ckulla.xtend2utils.emffactory</module>
 		<module>../../plugins/org.ckulla.xtend2utils.graphviz</module>
 		<module>../../plugins/org.ckulla.xtend2utils.graphviz.ui</module>
+		<module>../../plugins/org.ckulla.xtend2utils.javacodegen</module>
 
 		<module>../../tests/org.ckulla.xtend2utils.emffactory.test</module>
 		<module>../../tests/org.ckulla.xtend2utils.graphviz.test</module>
+		<module>../../tests/org.ckulla.xtend2utils.javacodegen.test</module>
 
 		<module>../../features/org.ckulla.xtend2utils.feature</module>
 		<module>../../features/org.ckulla.xtend2utils.feature.source</module>

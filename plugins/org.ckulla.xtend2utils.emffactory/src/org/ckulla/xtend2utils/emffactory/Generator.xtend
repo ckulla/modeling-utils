@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel
 import java.io.File
 import java.io.FileWriter
+import org.ckulla.xtend2utils.javacodegen.XtendImportManager
 
 class Generator {
 

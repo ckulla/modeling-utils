@@ -1,4 +1,4 @@
-package org.ckulla.xtend2utils.emffactory
+package org.ckulla.xtend2utils.javacodegen
 
 import org.eclipse.xtext.junit4.InjectWith
 import org.junit.runner.RunWith

@@ -1,10 +1,10 @@
-package org.ckulla.xtend2utils.emffactory
+package org.ckulla.xtend2utils.javacodegen
 
-import org.ckulla.xtend2utils.emffactory.ImportManager
+import org.ckulla.xtend2utils.javacodegen.ImportManager
 
 class XtendImportManager extends ImportManager {
 	
-	override importDeclarations () {
+	override getImportDeclarations () {
 		super.importDeclarations.toString.replaceAll (";","")
 	}
 	

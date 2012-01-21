@@ -18,7 +18,7 @@
    </license>
 
    <url>
-      <update label="%updateSiteName" url=""/>
+      <update label="%updateSiteName"/>
    </url>
 
    <includes
@@ -28,7 +28,7 @@
    <includes
          id="org.ckulla.xtend2utils.feature.source"
          version="0.0.0"/>
-         
+
    <plugin
          id="org.ckulla.xtend2utils.emffactory.test"
          download-size="0"
@@ -55,6 +55,22 @@
          download-size="0"
          install-size="0"
          version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.ckulla.xtend2utils.javacodegen.test"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.ckulla.xtend2utils.javacodegen.test.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
          unpack="false"/>
 
 </feature>

@@ -1,25 +1,26 @@
-package org.ckulla.xtend2utils.emffactory
+package org.ckulla.xtend2utils.javacodegen
 
 import java.util.Set
 
 /**
- * An import manager keeps track of imported classes during java code generation. 
- * Whenever you want to refer to a java class you have to call the importedName 
- * method with the full qualified name of the class. The import manager tries to
+ * <p>An import manager keeps track of imported classes during java code generation. 
+ * Whenever you want to refer to a java class you have to call the importedName() 
+ * method with the fully qualified name of the class. The import manager tries to
  * add the class to the list of imported names (and checks conflicts with already
- * imported classes). It will return either the full qualified name or the shortend 
- * name due to an import statement.
+ * imported classes). It will return either the fully qualified name or the shortend 
+ * name due to an import statement.</p>
  *
- * <p>The import manager support static imports as well. Use the method 
+ * <p>The import manager supports static imports as well. Use the method 
  * staticImportedName() instead. You can preregister static imports by calling 
- * addStaticImport() (for example addStaticImport ("org.junit.Assert.*"), 
- * staticImportedName("org.junit.Assert.assertEquals") returns "assertEquals").
+ * addStaticImport() (for example call addStaticImport ("org.junit.Assert.*"), 
+ * staticImportedName("org.junit.Assert.assertEquals") will then return just
+ * "assertEquals").</p>
  * 
  * <p>You have to initialize an import manager by calling setPackageName() and 
- * setClassName().
+ * setClassName().</p>
  * 
  * <p>You can get the import section of the java file later on by calling 
- * importDeclarations().
+ * getImportDeclarations().</p>
  */
 class ImportManager {
 
@@ -112,10 +113,10 @@ class ImportManager {
 	 * Returns the import declaration section that should be added to the generated
 	 * file.
 	 * 
-	 * The imports are sorted by package name and class name. An additional empty line
-	 * is inserted between pacakges. 
+	 * <p>The imports are sorted by package name and class name. An additional empty line
+	 * is inserted between packages.</p> 
 	 */
-	def importDeclarations () {
+	def getImportDeclarations () {
 		'''«FOR s:newArrayList (nonStaticImports(), staticImports()).filter[it.length>0] SEPARATOR System::getProperty("line.separator")»«s»«ENDFOR»'''
 	}
 

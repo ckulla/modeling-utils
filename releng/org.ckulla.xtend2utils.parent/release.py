@@ -72,8 +72,8 @@ if isGitWorikingDirectoryClean():
 	echo ("Current version is now " + args.devVersion + "-SNAPSHOT")
 
 	if args.dryRun:
-		revertChanges
-	if isGitWorikingDirectoryClean:
+		revertChanges()
+	if isGitWorikingDirectoryClean():
 		echo ("Your working directory is clean")
 else:
 

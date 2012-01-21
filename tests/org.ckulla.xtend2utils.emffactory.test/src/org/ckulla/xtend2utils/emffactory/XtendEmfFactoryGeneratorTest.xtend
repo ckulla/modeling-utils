@@ -7,11 +7,11 @@ import org.junit.After
 
 import static org.junit.Assert.*
 
-class Mwe2ExecutionTest {
+class XtendEmfFactoryGeneratorTest {
 
 	@Test
 	def void test () {	
-		new Mwe2Launcher().run(newArrayList ("src/org/ckulla/xtend2utils/emffactory/XtendFactoryTest.mwe2"));
+		new Mwe2Launcher().run(newArrayList ("src/org/ckulla/xtend2utils/emffactory/XtendEmfFactoryGeneratorTest.mwe2"));
 		assertTrue (new File ("test-gen/org/ckulla/xtend2utils/emffactory/test/foo/util/FooFactoryXtend.xtend").exists())
 	}
 	

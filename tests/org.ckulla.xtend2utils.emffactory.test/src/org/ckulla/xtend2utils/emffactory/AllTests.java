@@ -7,7 +7,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({ 
 	FactoryGeneratorTest.class,
-	Mwe2ExecutionTest.class
+	XtendEmfFactoryGeneratorTest.class
 })
 public class AllTests {
 

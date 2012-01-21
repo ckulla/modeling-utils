@@ -8,7 +8,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 	FooTest.class,
 	EcoreTest.class,
-	RunDotTest.class
+	RunDotTest.class,
+	EcoreToDotGeneratorTest.class
 	})
 public class AllTests {
 

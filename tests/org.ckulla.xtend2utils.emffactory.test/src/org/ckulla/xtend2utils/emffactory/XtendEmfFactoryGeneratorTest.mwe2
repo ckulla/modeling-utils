@@ -1,4 +1,4 @@
-module org.ckulla.xtend2utils.emffactory.XtendFactoryTest
+module org.ckulla.xtend2utils.emffactory.XtendEmfFactoryGeneratorTest
 
 import org.eclipse.emf.mwe.utils.StandaloneSetup
 import org.eclipse.emf.mwe.utils.DirectoryCleaner

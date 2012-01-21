@@ -23,7 +23,7 @@ def isGitWorikingDirectoryClean():
 	return True
 	
 def revertChanges():
-	call ("git clean -f ../..")
+	call ("git reset --hard HEAD")
 	
 projectName = "org.ckulla.xtend2utils"
 releaseDir = projectName + ".releases"

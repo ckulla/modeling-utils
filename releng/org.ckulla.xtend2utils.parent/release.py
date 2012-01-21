@@ -12,8 +12,10 @@ def echo (s):
 	
 def call (s):
 	echo (s)
-	subprocess.check_call(s, shell=True)
-
+	result = subprocess.check_call(s, shell=True)
+	if result > 0:
+		sys.exit ("Command " + s + "returned " + result)
+		
 def isGitWorikingDirectoryClean():
 	cmd = subprocess.Popen('git status --porcelain', shell=True, stdout=subprocess.PIPE)
 	for line in cmd.stdout:
@@ -21,7 +23,7 @@ def isGitWorikingDirectoryClean():
 	return True
 	
 def revertChanges():
-	call ("git clean -f")
+	call ("git clean -f ../..")
 	
 projectName = "org.ckulla.xtend2utils"
 releaseDir = projectName + ".releases"
@@ -38,7 +40,7 @@ args = parser.parse_args()
 
 echo ("Release version: " + args.releaseVersion + ", development version: " + args.devVersion + "-SNAPSHOT")
 if args.dryRun:
-	echo ("Dry Run, no changes will be committed")
+	echo ("Dry run, no changes will be committed")
 
 if isGitWorikingDirectoryClean():
 

@@ -54,7 +54,7 @@
                        </goals>
                        <configuration>
                              <workflowEngine>mwe2</workflowEngine>
-                             <workflowDescriptor>org.eclipse.emf.visualization.graphviz.Generate</workflowDescriptor>
+                             <workflowDescriptor>org.ckulla.xtend2utils.graphviz.Generate</workflowDescriptor>
                              <timestampFileName>generator.timestamp</timestampFileName>
 							<checkFilesets>
 							      <checkFileset>

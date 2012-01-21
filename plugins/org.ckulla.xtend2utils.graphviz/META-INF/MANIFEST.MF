@@ -15,7 +15,7 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.7.0",
  org.ckulla.xtend2utils.emffactory;bundle-version="0.1.0";resolution:=optional,
  org.apache.log4j;bundle-version="1.2.15";resolution:=optional,
  org.apache.commons.logging;bundle-version="1.0.4";resolution:=optional
-Export-Package: org.eclipse.emf.visualization.graphviz,
- org.eclipse.emf.visualization.graphviz.graph,
- org.eclipse.emf.visualization.graphviz.graph.impl,
- org.eclipse.emf.visualization.graphviz.graph.util
+Export-Package: org.ckulla.xtend2utils.graphviz,
+ org.ckulla.xtend2utils.graphviz.graph,
+ org.ckulla.xtend2utils.graphviz.graph.impl,
+ org.ckulla.xtend2utils.graphviz.graph.util

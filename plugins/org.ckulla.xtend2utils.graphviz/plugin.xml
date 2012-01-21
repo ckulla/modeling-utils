@@ -12,9 +12,9 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.openarchitectureware.org/vis/graphviz/Dot"
-            class="org.eclipse.emf.visualization.graphviz.dot.DotPackage"
-            genModel="src/org/eclipse/emf/visualization/graphviz/Dot.genmodel"/>
+            uri="http://ckulla.org/xtend2utils/graphviz/Graph"
+            class="org.ckulla.xtend2utils.graphviz.graph.GraphPackage"
+            genModel="model/Graph.genmodel"/>
    </extension>
 
 </plugin>

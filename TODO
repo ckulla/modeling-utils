@@ -1,8 +1,4 @@
-Skript anpassen um dry run (ohne git checkin mit anschließendem revert)
-
-Package namen an xtend2utils anpassen
-
-plugin.xml prüfen, registrierung der meta modelle
+plugin.properties
 
 Import Manager zu eigenem projekt?
 

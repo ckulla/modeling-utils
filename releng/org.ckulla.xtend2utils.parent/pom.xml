@@ -19,11 +19,13 @@
 	</properties>
 
 	<modules>
+		<module>../../plugins/org.ckulla.xtend2utils.cppcodegen</module>
 		<module>../../plugins/org.ckulla.xtend2utils.emffactory</module>
 		<module>../../plugins/org.ckulla.xtend2utils.graphviz</module>
 		<module>../../plugins/org.ckulla.xtend2utils.graphviz.ui</module>
 		<module>../../plugins/org.ckulla.xtend2utils.javacodegen</module>
 
+		<module>../../tests/org.ckulla.xtend2utils.cppcodegen.test</module>
 		<module>../../tests/org.ckulla.xtend2utils.emffactory.test</module>
 		<module>../../tests/org.ckulla.xtend2utils.graphviz.test</module>
 		<module>../../tests/org.ckulla.xtend2utils.javacodegen.test</module>

@@ -1,0 +1,36 @@
+module org.ckulla.xtend2utils.cppcodegen.Generate
+
+import org.eclipse.emf.mwe.utils.StandaloneSetup
+import org.eclipse.emf.mwe.utils.DirectoryCleaner
+import org.ckulla.xtend2utils.emffactory.XtendEmfFactoryGenerator
+import org.ckulla.xtend2utils.graphviz.EcoreToDotGenerator
+
+var projectName = "org.ckulla.xtend2utils.cppcodegen"
+var ecoreModel = "platform:/resource/${projectName}/model/CPP.ecore"
+var genModel = "platform:/resource/${projectName}/model/CPP.genmodel"
+
+Workflow {
+
+    bean = StandaloneSetup {
+        scanClassPath = true
+        platformUri = ".."
+    }
+    
+	component = DirectoryCleaner {
+		directory = "emf-gen"
+	}
+
+	component = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
+		genModel = genModel
+		srcPath = "src"
+	}    
+	
+	component = XtendEmfFactoryGenerator {		
+		genModel = genModel
+	}
+	
+	component = EcoreToDotGenerator {
+		ecoreModel = ecoreModel
+		outputFolder = "emf-gen"
+	}	
+}

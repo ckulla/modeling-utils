@@ -4,7 +4,7 @@ import org.eclipse.emf.mwe.utils.StandaloneSetup
 import org.eclipse.emf.mwe.utils.DirectoryCleaner
 
 var projectName = "org.ckulla.xtend2utils.graphviz.test"
-var ecoreModel = "platform:/resource/${projectName}/src/org/ckulla/xtend2utils/graphviz/EcoreToDotGeneratorTest.ecore"
+var genModel = "platform:/resource/${projectName}/src/org/ckulla/xtend2utils/graphviz/EcoreToDotGeneratorTest.genmodel"
 
 Workflow {
 
@@ -18,8 +18,7 @@ Workflow {
 	}
 
 	component = EcoreToDotGenerator {		
-		ecoreModel = ecoreModel
-		outputFolder = "test-gen"
+		genModel = genModel
 	}
 	
 }

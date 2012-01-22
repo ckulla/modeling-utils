@@ -6,7 +6,6 @@ import org.ckulla.xtend2utils.emffactory.XtendEmfFactoryGenerator
 import org.ckulla.xtend2utils.graphviz.EcoreToDotGenerator
 
 var projectName = "org.ckulla.xtend2utils.cppcodegen"
-var ecoreModel = "platform:/resource/${projectName}/model/CPP.ecore"
 var genModel = "platform:/resource/${projectName}/model/CPP.genmodel"
 
 Workflow {
@@ -30,7 +29,6 @@ Workflow {
 	}
 	
 	component = EcoreToDotGenerator {
-		ecoreModel = ecoreModel
-		outputFolder = "emf-gen"
+		genModel = genModel
 	}	
 }

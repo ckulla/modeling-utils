@@ -6,6 +6,8 @@ import org.apache.log4j.Logger;
 import org.ckulla.xtend2utils.emffactory.Generator;
 import org.ckulla.xtend2utils.graphviz.graph.Graph;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
+import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -22,50 +24,69 @@ public class EcoreToDotGenerator implements IWorkflowComponent {
 
 	Logger log = Logger.getLogger (EcoreToDotGenerator.class);
 	
-	String ecoreModel;
-	
-	String outputFolder;
+	String genModel;
 	
 	String outputFormat = "png";
+
+	String outputFolder;
 	
 	@Mandatory
-	public void setEcoreModel (String s) {
-		ecoreModel = s;
+	public void setGenModel (String s) {
+		genModel = s;
 	}
 
-	@Mandatory	
 	public void setOutputFolder (String s) {
 		outputFolder = s;
 	}
-
+	
 	public void setOutputFormat (String s) {
 		outputFormat = s;
 	}
 	
 	@Override
 	public void preInvoke() {
-		new ResourceSetImpl().getResource(URI.createURI(ecoreModel), true);
+		GenModelPackage.eINSTANCE.getClass();		
+		new ResourceSetImpl().getResource(URI.createURI(genModel), true);
 	}
 
 	@Override
 	public void invoke(IWorkflowContext ctx) {
-		log.info("Generating visualization for " + ecoreModel);
-		
-		
+		log.info("Generating visualization for " + genModel);
+	
 		ResourceSet resSet = new ResourceSetImpl();
-		Resource resource = resSet.getResource(URI.createURI(ecoreModel), true);
-		final EPackage _package = (EPackage) resource.getContents().get(0);
+		Resource resource = resSet.getResource(URI.createURI(genModel), true);
+		final GenModel genModel = (GenModel) resource.getContents().get(0);
 		
-		Injector injector = Guice.createInjector();		
-		final EcoreToGraph generator = injector.getInstance(EcoreToGraph.class);
-		Graph graph = generator.toGraph(_package);
-		final GraphToDot graphToDot = injector.getInstance(GraphToDot.class);
+		for (GenPackage p : genModel.getGenPackages()) {
+			log.info("Generating visualization for package " +  p.getEcorePackage().getName());
+			
+			Injector injector = Guice.createInjector();		
+			final EcoreToGraph generator = injector.getInstance(EcoreToGraph.class);
+			Graph graph = generator.toGraph(p.getEcorePackage());
+			final GraphToDot graphToDot = injector.getInstance(GraphToDot.class);
+			log.info ("outputfolder = " + getOutputFolder (p));
+			new File (getOutputFolder (p)).mkdir();
+			graphToDot.runDot(new File (getOutputFolder (p)), graph, outputFormat);
 
-		if (outputFolder != null) {
-			graphToDot.runDot(new File (outputFolder), graph, outputFormat);
-		}
+		}		
 	}
 
+	public String getOutputFolder (GenPackage p) {
+		if (outputFolder == null) {
+			GenModel genModel = (GenModel) p.eContainer();	
+			return ".." + genModel.getModelDirectory() + "/" + (concatIfNotEmpty(p.getBasePackage(),  "/") + p.getEcorePackage().getName()).replaceAll("\\.","/");
+		} else {
+			return outputFolder;
+		}
+	}	
+
+	public String concatIfNotEmpty (String s1, String s2) {
+		if (s1 == null || s1.isEmpty())
+			return "";
+		else
+			return s1 + s2;
+	}
+	
 	@Override
 	public void postInvoke() {
 	}

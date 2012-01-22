@@ -4,10 +4,24 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.log4j.Logger;
+
 public class CommandExecutor {
+
+	Logger log = Logger.getLogger (CommandExecutor.class);
 
 	public int execute(String[] cmdArray, String[] envp, File dir) {
 		try {
+			if (log.isInfoEnabled()) {
+				String s = "";
+				for (String c : cmdArray) {
+					if (s != "") {
+						s = s + " ";
+					}
+					s = s + c;
+				}
+				log.info ("Executing command: " + s);
+			}
 			Process p = Runtime.getRuntime().exec(cmdArray, envp, dir);
 
 			StringBuffer inBuffer = new StringBuffer();

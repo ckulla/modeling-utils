@@ -3,13 +3,11 @@ package org.ckulla.xtend2utils.graphviz;
 import java.io.File;
 
 import org.apache.log4j.Logger;
-import org.ckulla.xtend2utils.emffactory.Generator;
 import org.ckulla.xtend2utils.graphviz.graph.Graph;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -17,6 +15,7 @@ import org.eclipse.emf.mwe2.runtime.Mandatory;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowComponent;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
 
+import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -30,6 +29,8 @@ public class EcoreToDotGenerator implements IWorkflowComponent {
 
 	String outputFolder;
 	
+	String dotCommand;
+	
 	@Mandatory
 	public void setGenModel (String s) {
 		genModel = s;
@@ -42,6 +43,11 @@ public class EcoreToDotGenerator implements IWorkflowComponent {
 	public void setOutputFormat (String s) {
 		outputFormat = s;
 	}
+
+	public void setDotCommand (String s) {
+		dotCommand = s;
+	}
+
 	
 	@Override
 	public void preInvoke() {
@@ -60,7 +66,21 @@ public class EcoreToDotGenerator implements IWorkflowComponent {
 		for (GenPackage p : genModel.getGenPackages()) {
 			log.info("Generating visualization for package " +  p.getEcorePackage().getName());
 			
-			Injector injector = Guice.createInjector();		
+			Injector injector = Guice.createInjector(new AbstractModule() {
+
+				@Override
+				protected void configure() {
+					if (dotCommand != null)
+						bind (IDotCommandProvider.class).toInstance (new IDotCommandProvider() {
+							
+							@Override
+							public String getDotCommand() {
+								return dotCommand;
+							}
+						});
+				}
+				
+			});		
 			final EcoreToGraph generator = injector.getInstance(EcoreToGraph.class);
 			Graph graph = generator.toGraph(p.getEcorePackage());
 			final GraphToDot graphToDot = injector.getInstance(GraphToDot.class);

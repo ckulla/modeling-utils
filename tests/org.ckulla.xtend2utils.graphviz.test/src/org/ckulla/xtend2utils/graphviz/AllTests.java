@@ -9,7 +9,8 @@ import org.junit.runners.Suite.SuiteClasses;
 	FooTest.class,
 	EcoreTest.class,
 	RunDotTest.class,
-	EcoreToDotGeneratorTest.class
+	EcoreToDotGeneratorTest.class,
+	CollapseGraphTest.class
 	})
 public class AllTests {
 

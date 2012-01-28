@@ -31,6 +31,7 @@ class GraphToDot {
 		executor.execute(
 			newArrayList (
 				dotCommandProvider.dotCommand, 
+				"-Gcharset=latin1",
 				"-T" + outputFormat, 
 				"-o" + g.get(NAME)+ "." + outputFormat, 
 				outputFile.canonicalPath),  

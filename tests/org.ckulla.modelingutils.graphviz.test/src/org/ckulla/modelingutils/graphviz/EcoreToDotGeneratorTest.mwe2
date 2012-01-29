@@ -1,0 +1,24 @@
+module org.ckulla.modelingutils.graphviz.EcoreToDotGeneratorTest
+
+import org.eclipse.emf.mwe.utils.StandaloneSetup
+import org.eclipse.emf.mwe.utils.DirectoryCleaner
+
+var projectName = "org.ckulla.modelingutils.graphviz.test"
+var genModel = "platform:/resource/${projectName}/src/org/ckulla/modelingutils/graphviz/EcoreToDotGeneratorTest.genmodel"
+
+Workflow {
+
+    bean = StandaloneSetup {
+        scanClassPath = true
+        platformUri = ".."
+    }
+    
+	component = DirectoryCleaner {
+		directory = "test-gen"
+	}
+
+	component = EcoreToDotGenerator {		
+		genModel = genModel
+	}
+	
+}

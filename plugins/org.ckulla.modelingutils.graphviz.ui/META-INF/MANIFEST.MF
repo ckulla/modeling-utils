@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Modeling Utilities Graphviz UI
+Bundle-SymbolicName: org.ckulla.modelingutils.graphviz.ui;singleton:=true
+Bundle-Version: 0.2.0.qualifier
+Bundle-Activator: org.ckulla.modelingutils.graphviz.ui.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources;bundle-version="3.7.100",
+ org.ckulla.modelingutils.graphviz;bundle-version="0.1.0",
+ com.google.inject;bundle-version="2.0.0",
+ org.eclipse.emf.ecore;bundle-version="2.7.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

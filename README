@@ -10,7 +10,7 @@ Building
 
 The build is driven by maven and tycho. You run it by executing:
 
-cd releng/org.ckulla.xtend2utils.parent
+cd releng/org.ckulla.modelingutils.parent
 ./build.py compile
 
 The build script takes care of creating a local repository before executing the actual build. This
@@ -22,14 +22,14 @@ Creating Releases
 
 A release is created by executing the realese script. You pass a release version and a development
 version to the release script. The release will be crearted for the release version and the 
-resulting update site will be placed into releng/org.ckulla.xtend2utils.releases. Then the version 
+resulting update site will be placed into releng/org.ckulla.modelingutils.releases. Then the version 
 will be set to developmenet version (-SNAPSHOT postfix is added automatically). This script also 
 takes care of commiting changes to the git repository. 
 
 The option --dry-run is used to do the release cycle without commit changes. Do this to verify the
 release can be created succesfully before actullay doing it.
 
-cd releng/org.ckulla.xtend2utils.parent
+cd releng/org.ckulla.modelingutils.parent
 ./release.py --dry-run 0.1.0 0.2.0
 ./release.py 0.1.0 0.2.0
 

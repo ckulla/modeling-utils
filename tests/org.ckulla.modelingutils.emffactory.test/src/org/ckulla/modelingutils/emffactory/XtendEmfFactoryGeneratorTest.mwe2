@@ -1,0 +1,29 @@
+module org.ckulla.modelingutils.emffactory.XtendEmfFactoryGeneratorTest
+
+import org.eclipse.emf.mwe.utils.StandaloneSetup
+import org.eclipse.emf.mwe.utils.DirectoryCleaner
+
+var projectName = "org.ckulla.modelingutils.emffactory.test"
+var genModel = "platform:/resource/${projectName}/src/org/ckulla/modelingutils/emffactory/XtendFactoryTest.genmodel"
+
+Workflow {
+
+    bean = StandaloneSetup {
+        scanClassPath = true
+        platformUri = ".."
+    }
+    
+	component = DirectoryCleaner {
+		directory = "test-gen"
+	}
+
+	component = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
+		genModel = genModel
+		srcPath = "src"
+	}    
+	
+	component = XtendEmfFactoryGenerator {		
+		genModel = genModel
+	}
+	
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.ckulla.modelingutils.feature_0.2.0.qualifier.jar" id="org.ckulla.modelingutils.feature" version="0.2.0.qualifier">
+      <category name="modelingutils"/>
+   </feature>
+   <feature url="features/org.ckulla.modelingutils.feature.sdk_0.2.0.qualifier.jar" id="org.ckulla.modelingutils.feature.sdk" version="0.2.0.qualifier">
+      <category name="modelingutils"/>
+   </feature>
+   <feature url="features/org.ckulla.modelingutils.feature.source_0.2.0.qualifier.jar" id="org.ckulla.modelingutils.feature.source" version="0.2.0.qualifier">
+      <category name="modelingutils"/>
+   </feature>
+   <category-def name="modelingutils" label="Modeling Utilities"/>
+</site>

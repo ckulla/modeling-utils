@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Modeling Utilities Java Code Generation
+Bundle-SymbolicName: org.ckulla.modelingutils.javacodegen
+Bundle-Version: 0.2.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.xtend2.lib,
+ com.google.inject,
+ com.google.guava,
+ org.eclipse.xtext.xbase.lib
+Export-Package: org.ckulla.modelingutils.javacodegen

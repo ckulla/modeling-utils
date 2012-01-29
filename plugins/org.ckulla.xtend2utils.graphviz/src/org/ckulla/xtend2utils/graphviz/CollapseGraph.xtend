@@ -7,9 +7,6 @@ import org.ckulla.xtend2utils.graphviz.graph.Element
 import com.google.inject.Inject
 import org.ckulla.xtend2utils.graphviz.graph.util.GraphFactoryXtend
 
-import com.google.common.collect.HashMultimap
-import com.google.common.collect.Multimap
-
 import static org.ckulla.xtend2utils.graphviz.AttributeNames.*
 
 import org.ckulla.xtend2utils.graphviz.GraphUtils
@@ -21,7 +18,9 @@ class CollapseGraph {
 	@Inject extension GraphFactoryXtend
 	
 	@Inject extension GraphUtils
-	
+
+	@Inject extension HashMultiMapHelper
+		
 	def Element collapse (Graph g, (Graph) => boolean collapseGraph) {
 		processEdges (g, collapseGraph)
 		thinOutEdges (g)		
@@ -74,7 +73,8 @@ class CollapseGraph {
 
 	def thinOutEdges (Graph g) {
 		// create a multimap with all edges grouped by the same head and tail
-		val Multimap<Pair<Node,Node>, Edge> edgeMap = HashMultimap::create()
+		// FIXME: shoud read: val Multimap<Pair<Node,Node>, Edge> edgeMap = HashMultimap::create()
+		val edgeMap = createHashMultiMap();
 		g.edges.forEach [edgeMap.put(new Pair(it.tail, it.head), it)]
 		// get all duplicte edges 
 		for (k : edgeMap.keySet.filter [edgeMap.get(it).size()>1]) {			

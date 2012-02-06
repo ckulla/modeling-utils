@@ -6,8 +6,8 @@ var document = "Modeling Utilities Documentation"
 Workflow {
 
 	component = @org.eclipse.xtext.xdoc.generator.XdocGeneratorMWE auto-inject {
-		htmlTargetDir = "target/html" 	
-		eclipseHelpTargetDir = "target/contents" 
+		htmlTargetDir = "website" 	
+		eclipseHelpTargetDir = "contents" 
 		pdfTargetDir = "target/manual"
 		pdfLatex = "/usr/texbin/pdflatex"
 	}

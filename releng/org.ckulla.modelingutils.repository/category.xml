@@ -33,13 +33,10 @@
    <feature url="features/org.eclipse.xxtext.sdk_2.2.1.v201112130541.jar" id="org.eclipse.xtext.sdk" version="2.2.1.v201112130541">
       <category name="3rdparty"/>
    </feature>
-   <feature url="features/org.junit.contrib.eclipse.feature_0.0.1.201108102008.jar" id="org.junit.contrib.eclipse.feature" version="0.0.1.201108102008">
-      <category name="3rdparty"/>
-   </feature>
 
    <category-def name="3rdparty" label="Third Party">
       <description>
-         Dependent features to work with modelingutils.
+         Dependent features to work with the Modeling Utilities.
       </description>
    </category-def>
 

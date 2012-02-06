@@ -30,6 +30,9 @@
 		<module>../../tests/org.ckulla.modelingutils.graphviz.test</module>
 		<module>../../tests/org.ckulla.modelingutils.javacodegen.test</module>
 
+		<module>../../docs/org.ckulla.modelingutils.doc</module>
+
+
 		<module>../../features/org.ckulla.modelingutils.feature</module>
 		<module>../../features/org.ckulla.modelingutils.feature.source</module>
 		<module>../../features/org.ckulla.modelingutils.feature.sdk</module>
@@ -307,6 +310,16 @@
 			<id>modelingutils-dependencies</id>
 			<layout>p2</layout>
 			<url>file:../../releng/org.ckulla.modelingutils.repository/target/repository</url>
+		</repository>
+		<repository>
+			<id>xdoc</id>
+			<layout>p2</layout>
+			<url>file:../../releng/org.ckulla.modelingutils.repositories/xdoc</url>
+		</repository>
+		<repository>
+			<id>junit.contrib</id>
+			<layout>p2</layout>
+			<url>file:../../releng/org.ckulla.modelingutils.repositories/org.junit.contrib</url>
 		</repository>
 	</repositories>
             

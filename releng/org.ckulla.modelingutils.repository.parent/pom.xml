@@ -15,12 +15,12 @@
 	
 	<properties>
 		<tycho-version>0.14.0-SNAPSHOT</tycho-version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>		
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>		
 	</properties>
 	
 	<modules>
+		<module>../../releng/org.ckulla.modelingutils.targetplatform</module>	
 		<module>../../releng/org.ckulla.modelingutils.repository</module>
-		<module>../../releng/org.ckulla.modelingutils.targetplatform</module>
 	</modules>
-	
+		
 </project>

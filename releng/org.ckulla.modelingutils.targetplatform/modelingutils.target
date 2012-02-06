@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.6"?>
 
-<target includeMode="feature" name="modelingutils Target Platform" sequenceNumber="99">
+<target includeMode="feature" name="Modeling Utils Target Platform" sequenceNumber="100">
 <locations>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.sdk.ide" version="3.7.1.M20110909-1335"/>
@@ -39,10 +39,6 @@
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.easymock" version="2.4.0.v20090202-0900"/>
 <repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20110523182458/repository/"/>
-</location>
-<location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.junit.contrib.eclipse.feature.feature.group"/>
-<repository location="file:////Users/ckulla/dev/git/org.junit.contrib.eclipse/repository/target/repository/"/>
 </location>
 </locations>
 <environment>

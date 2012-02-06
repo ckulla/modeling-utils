@@ -1,0 +1,16 @@
+module org.ckulla.modelingutils.doc.Generate
+
+var modelPath = "xdoc"
+var document = "Modeling Utilities Documentation"
+
+Workflow {
+
+	component = @org.eclipse.xtext.xdoc.generator.XdocGeneratorMWE auto-inject {
+		htmlTargetDir = "target/html" 	
+		eclipseHelpTargetDir = "target/contents" 
+		pdfTargetDir = "target/manual"
+		pdfLatex = "/usr/texbin/pdflatex"
+	}
+
+}
+	

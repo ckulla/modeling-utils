@@ -191,7 +191,7 @@ class EcoreTest {
 				9 -> 19 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
 			}
 			'''.toString,
-			graph2Dot.toDot(graph).toString
+			graph2Dot.toDot(graph, "ecore").toString
 		);
 	}
 	

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ckullas Modelingutils Utils
+Bundle-SymbolicName: org.ckulla.modelingutils.utils
+Bundle-Version: 0.2.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.junit.contrib.emf,
+ org.junit.contrib.guice,
+ org.junit.contrib.rules
+Require-Bundle: org.junit4;bundle-version="4.8.1",
+ com.google.inject;bundle-version="3.0.0",
+ org.eclipse.emf.ecore;bundle-version="2.7.0",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.7.0"

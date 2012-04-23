@@ -25,32 +25,62 @@ import org.eclipse.emf.ecore.EDataType
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.ecore.ENamedElement
 import org.ckulla.modelingutils.graphviz.graph.Attribute
+import org.eclipse.emf.ecore.util.EcoreUtil
+import java.util.Set
 
 class EcoreToGraph {
 
 	@Inject extension GraphFactoryXtend 
 	
 	@Inject(optional=true) @Named("EcoreToGraph.showDataTypes") 	
-	boolean showDataTypes
+	boolean showDataTypes = true
+
+	@Inject(optional=true) @Named("EcoreToGraph.showReferencedResources") 	
+	boolean showReferencedResources
+		
+	Set<Resource> resources
 	
-	Resource resource
+	Set<Graph> rootGraphs = newHashSet()
+
+	def void setShowDataTypes (boolean enable) {
+		showDataTypes = enable
+	}
 	
-	def Graph toGraph (EPackage p) {
-		resource = p.eResource
-		createNode(p) as Graph
+	def void setShowReferencedResources (boolean enable) {
+		showReferencedResources = enable
+	}
+	
+	def List<Graph> toGraph (List<EPackage> packages) {
+		resources = packages.map [ eResource ].toSet
+		for (p: packages) {
+			EcoreUtil::resolveAll (p)
+			rootGraphs.add (createNode(p) as Graph)
+		}
+		rootGraphs.toList
+	}
+
+	def List<Graph> toGraph (EPackage p) {
+		toGraph (newArrayList(p))
 	}
 
 	def dispatch expand (EAttribute it) {
-		'''«name»: «EType.name»'''	
+		'''«name»: «EType.name»«IF it.unsettable» (unsettable)«ENDIF»'''	
 	}	
 
 	def dispatch expand (EReference it) {
 		'''«if (!containment) "ref "»«name»: «EType.name»\\[«boundsString»\\]'''	
 	}
+
 		
 	def Element node (ENamedElement c) {
-		if (c.eResource == resource && (!(c.^class == typeof (EDataType)) || showDataTypes))
-			createNode (c)
+		if (!(typeof (EDataType).isAssignableFrom(c.^class)) || showDataTypes) {
+			if (resources.contains (c.eResource)) {
+				createNode (c)	
+			} else {
+				if (showReferencedResources && !(c.eResource.URI.toString == "http://www.eclipse.org/emf/2002/Ecore"))
+					createNodeFromOtherResource (c)
+			}
+		}
 	}
 	
 	def dispatch Element createNode (EPackage p) {
@@ -72,7 +102,7 @@ class EcoreToGraph {
 	}
 
 	def dispatch Element create node [] createNode (EDataType c) {
-		 attr [ name = SHAPE value = "record" ]
+		attr [ name = SHAPE value = "record" ]
 		attr [ name = LABEL value = '''"{«c.name»|}"'''.toString ]			
 		attr [ name = FILL_COLOR value =" white" ]
 		attr [ name = FONT_COLOR value  = "black" ]
@@ -98,6 +128,21 @@ class EcoreToGraph {
 		attr [ name = FONT_COLOR value = "black" ]			
 		attr [ name = STYLE value = "filled" ]			
 	}	
+	
+	def Element create node [] createNodeFromOtherResource  (ENamedElement c) {
+		attributes.addAll (createNode (c).attributes)
+		(createNodeFromOtherResource(c.eContainer as EPackage) as Graph).elements.add(it)	
+	}
+
+	def Element create graph [] createNodeFromOtherResource  (EPackage p) {
+		attr [ name = LABEL value = '''«/*\<\<package\>\>\n*/»«p.name»'''.toString]	
+		attr [ name = NAME value = p.name ]	
+		attr [ name = FONT_NAME value = "arial"]
+		if (p.eContainer != null)
+			(createNodeFromOtherResource (p.eContainer as EPackage) as Graph).elements.add (it)
+		else
+			rootGraphs.add(it)	
+	}
 	
 	def superTypeEdge (EClass base, EClass derived) {
 		edge (base,derived) [

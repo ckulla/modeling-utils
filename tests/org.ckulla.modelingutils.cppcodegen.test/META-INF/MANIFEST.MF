@@ -10,4 +10,4 @@ Require-Bundle: org.junit,
  org.apache.commons.logging,
  org.eclipse.xtext.xbase.lib;bundle-version="2.0.0",
  org.eclipse.xtext.xtend2.lib;bundle-version="2.0.0",
- org.junit.contrib.eclipse.import;bundle-version="0.0.1"
+ org.ckulla.modelingutils.utils

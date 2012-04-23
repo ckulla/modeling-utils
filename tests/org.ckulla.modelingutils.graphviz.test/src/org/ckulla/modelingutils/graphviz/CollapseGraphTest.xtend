@@ -16,6 +16,7 @@ import org.junit.runner.RunWith
 
 import com.google.inject.Inject
 import org.ckulla.modelingutils.graphviz.graph.Graph
+import org.eclipse.emf.mwe.utils.StandaloneSetup
 
 @RunWith(typeof (RulesTestRunner))
 @Rules({ typeof (EmfRegistryRule), typeof(GuiceRule) })
@@ -33,11 +34,15 @@ class CollapseGraphTest {
 	@Inject
 	extension GraphUtils
 	
+	@Inject 
+	StandaloneSetup standaloneSetup
+		
 	@Test
 	def void test() {
+		standaloneSetup.setPlatformUri ("..")
 		val rs = new ResourceSetImpl ();
 		val r = rs.getResource(URI::createFileURI("model/Foo.ecore"), true);
-		val graph = ecoreToGraph.toGraph(r.getContents().get(0) as EPackage)
+		val graphs = ecoreToGraph.toGraph(r.getContents().get(0) as EPackage)
 		assertEquals (
 			'''
 				digraph "foo" {
@@ -49,7 +54,7 @@ class CollapseGraphTest {
 					subgraph "cluster_foo" {
 						label="foo";name="foo";fontname="arial";
 						
-						0 [shape=record,label="{\<\<abstract\>\>\nFoo|name: EString\lref barFromOtherEcore: \\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
+						0 [shape=record,label="{\<\<abstract\>\>\nFoo|name: EString\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
 						1 [shape=record,label="{\<\<enumeration\>\>\nQux | aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
 						subgraph "cluster_bar" {
 							label="bar";name="bar";fontname="arial";
@@ -65,7 +70,8 @@ class CollapseGraphTest {
 					0 -> 2 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
 				}
 			'''.toString,
-			graph2Dot.toDot(graph.collapse [ name == "baz"] as Graph).toString
+			graph2Dot.toDot(newArrayList(graphs.head.collapse [ name == "baz"] as Graph), "foo").toString
+			
 		);
 	}
 

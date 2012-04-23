@@ -15,6 +15,8 @@ import org.junit.contrib.rules.RulesTestRunner
 import org.junit.runner.RunWith
 
 import com.google.inject.Inject
+import org.eclipse.emf.mwe.utils.StandaloneSetup
+import org.junit.Before
 
 @RunWith(typeof (RulesTestRunner))
 @Rules({ typeof (EmfRegistryRule), typeof(GuiceRule) })
@@ -26,11 +28,15 @@ class FooTest {
 	@Inject
 	GraphToDot graph2Dot
 	
+	@Inject 
+	StandaloneSetup standaloneSetup
+	
 	@Test
 	def void test() {
-		val rs = new ResourceSetImpl ();
-		val r = rs.getResource(URI::createFileURI("model/Foo.ecore"), true);
-		val graph = ecoreToGraph.toGraph(r.getContents().get(0) as EPackage);
+		standaloneSetup.setPlatformUri ("..")		
+		val rs = new ResourceSetImpl ()
+		val r = rs.getResource(URI::createFileURI("model/Foo.ecore"), true)
+		val graph = ecoreToGraph.toGraph(r.getContents().get(0) as EPackage)
 		assertEquals (
 			'''
 				digraph "foo" {
@@ -42,7 +48,7 @@ class FooTest {
 					subgraph "cluster_foo" {
 						label="foo";name="foo";fontname="arial";
 						
-						0 [shape=record,label="{\<\<abstract\>\>\nFoo|name: EString\lref barFromOtherEcore: \\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
+						0 [shape=record,label="{\<\<abstract\>\>\nFoo|name: EString\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
 						1 [shape=record,label="{\<\<enumeration\>\>\nQux | aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
 						subgraph "cluster_bar" {
 							label="bar";name="bar";fontname="arial";
@@ -62,8 +68,145 @@ class FooTest {
 					0 -> 1 [dir=both,label=qux,arrowtail=diamond,arrowhead=none,weight=25];
 				}
 			'''.toString,
-			graph2Dot.toDot(graph).toString
-		);
+			graph2Dot.toDot(graph, "foo").toString
+		)
+	}
+
+	@Test
+	def void testWithoutDataTypes() {
+		standaloneSetup.setPlatformUri ("..")		
+		val rs = new ResourceSetImpl ()
+		val r = rs.getResource(URI::createFileURI("model/Foo.ecore"), true)
+		ecoreToGraph.setShowDataTypes(false)
+		val graph = ecoreToGraph.toGraph(r.getContents().get(0) as EPackage)
+		assertEquals (
+			'''
+				digraph "foo" {
+				
+					graph [ fontname = "arial" ]
+					node [ fontname = "arial" ]
+					edge [ fontname = "arial" ]
+					
+					subgraph "cluster_foo" {
+						label="foo";name="foo";fontname="arial";
+						
+						0 [shape=record,label="{\<\<abstract\>\>\nFoo|name: EString\lqux: Qux\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
+						subgraph "cluster_bar" {
+							label="bar";name="bar";fontname="arial";
+							
+							1 [shape=record,label="{Bar|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+						}
+						subgraph "cluster_baz" {
+							label="baz";name="baz";fontname="arial";
+							
+							2 [shape=record,label="{Baz|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+						}
+					}
+					1 -> 2 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];
+					0 -> 1 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+					2 -> 0 [dir=both,label=foo,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="*"];
+					0 -> 2 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+				}
+			'''.toString,
+			graph2Dot.toDot(graph, "foo").toString
+		)
+	}
+	
+	@Test
+	def void testFooAndBar() {
+		standaloneSetup.setPlatformUri ("..")				
+		val rs = new ResourceSetImpl ()
+		val rFoo = rs.getResource(URI::createFileURI("model/Foo.ecore"), true)
+		val rBar = rs.getResource(URI::createFileURI("model/Bar.ecore"), true)
+		val graph = ecoreToGraph.toGraph(
+			newArrayList (rFoo.getContents().get(0) as EPackage, rBar.getContents().get(0) as EPackage)
+		)
+		assertEquals (
+			'''
+				digraph "fooAndBar" {
+				
+					graph [ fontname = "arial" ]
+					node [ fontname = "arial" ]
+					edge [ fontname = "arial" ]
+					
+					subgraph "cluster_bar" {
+						label="bar";name="bar";fontname="arial";
+						
+						0 [shape=record,label="{Bar|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+					}
+					subgraph "cluster_foo" {
+						label="foo";name="foo";fontname="arial";
+						
+						1 [shape=record,label="{\<\<abstract\>\>\nFoo|name: EString\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
+						2 [shape=record,label="{\<\<enumeration\>\>\nQux | aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
+						subgraph "cluster_bar" {
+							label="bar";name="bar";fontname="arial";
+							
+							3 [shape=record,label="{Bar|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+						}
+						subgraph "cluster_baz" {
+							label="baz";name="baz";fontname="arial";
+							
+							4 [shape=record,label="{Baz|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+						}
+					}
+					3 -> 4 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];
+					1 -> 3 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+					4 -> 1 [dir=both,label=foo,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="*"];
+					1 -> 4 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+					1 -> 2 [dir=both,label=qux,arrowtail=diamond,arrowhead=none,weight=25];
+				}
+			'''.toString,
+			graph2Dot.toDot(graph, "fooAndBar").toString
+		)
+	}
+	
+	@Test
+	def void testShowReferencedResources() {
+		standaloneSetup.setPlatformUri ("..")		
+		val rs = new ResourceSetImpl ();
+		val r = rs.getResource(URI::createFileURI("model/Foo.ecore"), true)
+		ecoreToGraph.setShowReferencedResources (true)
+		val graph = ecoreToGraph.toGraph(r.getContents().get(0) as EPackage)
+		assertEquals (
+			'''
+				digraph "foo" {
+				
+					graph [ fontname = "arial" ]
+					node [ fontname = "arial" ]
+					edge [ fontname = "arial" ]
+					
+					subgraph "cluster_bar" {
+						label="bar";name="bar";fontname="arial";
+						
+						0 [shape=record,label="{Bar|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+					}
+					subgraph "cluster_foo" {
+						label="foo";name="foo";fontname="arial";
+						
+						1 [shape=record,label="{\<\<abstract\>\>\nFoo|name: EString\l}",fillcolor=white,fontcolor=black,style=filled, bold];
+						2 [shape=record,label="{\<\<enumeration\>\>\nQux | aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
+						subgraph "cluster_bar" {
+							label="bar";name="bar";fontname="arial";
+							
+							3 [shape=record,label="{Bar|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+						}
+						subgraph "cluster_baz" {
+							label="baz";name="baz";fontname="arial";
+							
+							4 [shape=record,label="{Baz|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+						}
+					}
+					3 -> 4 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];
+					1 -> 3 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+					4 -> 1 [dir=both,label=foo,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="*"];
+					1 -> 4 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+					1 -> 2 [dir=both,label=qux,arrowtail=diamond,arrowhead=none,weight=25];
+					1 -> 0 [dir=both,label=barFromOtherEcore,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="1..*"];
+				}
+			'''.toString,
+			graph2Dot.toDot(graph, "foo").toString
+		)
 	}
 	
 }

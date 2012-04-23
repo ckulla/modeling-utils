@@ -7,7 +7,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="qux" eType="#//Qux"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="barFromOtherEcore" lowerBound="1"
-        upperBound="-1" eType="ecore:EClass Bar.ecore#//Bar"/>
+        upperBound="-1" eType="ecore:EClass platform:/resource/org.ckulla.modelingutils.graphviz.test/model/Bar.ecore#//Bar"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Qux">
     <eLiterals name="aLiteral"/>

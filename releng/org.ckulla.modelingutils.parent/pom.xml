@@ -24,7 +24,8 @@
 		<module>../../plugins/org.ckulla.modelingutils.graphviz</module>
 		<module>../../plugins/org.ckulla.modelingutils.graphviz.ui</module>
 		<module>../../plugins/org.ckulla.modelingutils.javacodegen</module>
-
+		<module>../../plugins/org.ckulla.modelingutils.utils</module>
+		
 		<module>../../tests/org.ckulla.modelingutils.cppcodegen.test</module>
 		<module>../../tests/org.ckulla.modelingutils.emffactory.test</module>
 		<module>../../tests/org.ckulla.modelingutils.graphviz.test</module>
@@ -315,11 +316,6 @@
 			<id>xdoc</id>
 			<layout>p2</layout>
 			<url>file:../../releng/org.ckulla.modelingutils.repositories/xdoc</url>
-		</repository>
-		<repository>
-			<id>junit.contrib</id>
-			<layout>p2</layout>
-			<url>file:../../releng/org.ckulla.modelingutils.repositories/org.junit.contrib</url>
 		</repository>
 	</repositories>
             

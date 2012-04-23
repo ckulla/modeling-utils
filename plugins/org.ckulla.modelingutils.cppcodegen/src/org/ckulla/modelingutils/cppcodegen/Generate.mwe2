@@ -7,6 +7,7 @@ import org.ckulla.modelingutils.graphviz.EcoreToDotGenerator
 
 var projectName = "org.ckulla.modelingutils.cppcodegen"
 var genModel = "platform:/resource/${projectName}/model/CPP.genmodel"
+var ecoreModel = "platform:/resource/${projectName}/model/CPP.ecore"
 
 Workflow {
 
@@ -29,6 +30,8 @@ Workflow {
 	}
 	
 	component = EcoreToDotGenerator {
-		genModel = genModel
+		ecoreModel = ecoreModel
+		outputFolder = "emf-gen/org/ckulla/modelingutils/cppcodegen/cpp"
+		name = "cpp"
 	}	
 }

@@ -19,7 +19,7 @@ class EcoreToDotGeneratorTest {
 	@Test
 	def void test () {	
 		new Mwe2Launcher().run(newArrayList ("src/org/ckulla/modelingutils/graphviz/EcoreToDotGeneratorTest.mwe2"));
-		assertTrue (new File ("test-gen/foo/foo.png").exists())
+		assertTrue (new File ("test-gen/foo/EcoreToDotGeneratorTest.png").exists())
 	}
 	
 	@After

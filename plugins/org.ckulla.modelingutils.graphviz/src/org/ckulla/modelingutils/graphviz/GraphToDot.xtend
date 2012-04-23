@@ -26,39 +26,43 @@ class GraphToDot {
 	@Inject
 	IDotCommandProvider dotCommandProvider
 	
-	def runDot (File outputPath, Graph g, String outputFormat) {
-		val outputFile = toFile (outputPath, g)
+	def runDot (File outputPath, List<Graph> graphs, String name, String outputFormat) {
+		val outputFile = toFile (outputPath, graphs, name)
 		executor.execute(
 			newArrayList (
 				dotCommandProvider.dotCommand, 
 				"-Gcharset=latin1",
 				"-T" + outputFormat, 
-				"-o" + g.get(NAME)+ "." + outputFormat, 
+				"-o" + name + "." + outputFormat, 
 				outputFile.canonicalPath),  
 			null, 
 			outputPath.canonicalFile);
 	}
 	
 	def toFile (File path, Graph g) {
-		val outputFile = new File (path, g.get(NAME)+".dot")
+		toFile (path, newArrayList(g), g.get(NAME))
+	}
+
+	def toFile (File path, List<Graph> graphs, String name) {
+		val outputFile = new File (path, name + ".dot")
 		val writer = new FileWriter (outputFile)
-		writer.write(toDot (g).toString)
+		writer.write(toDot (graphs, name).toString)
 		writer.close
 		outputFile
 	}
 	
-	def toDot (Graph it) {
+	def toDot (List<Graph> it, String name) {
 		'''
-		digraph "«get(NAME)»" {
+		digraph "«name»" {
 		
-			«IF get(FONT_NAME) != null»
-			graph [ fontname = "«get(FONT_NAME)»" ]
-			node [ fontname = "«get(FONT_NAME)»" ]
-			edge [ fontname = "«get(FONT_NAME)»" ]
+			«IF head.get(FONT_NAME) != null»
+			graph [ fontname = "«head.get(FONT_NAME)»" ]
+			node [ fontname = "«head.get(FONT_NAME)»" ]
+			edge [ fontname = "«head.get(FONT_NAME)»" ]
 			«ENDIF»
 			
-			«it.expand»
-			«it.edges»
+			«FOR g:it.sortBy[get(NAME)]»«g.expand»«ENDFOR»
+			«FOR g:it.sortBy[get(NAME)]»«g.edges»«ENDFOR»
 		}
 		'''
 	}
@@ -69,7 +73,7 @@ class GraphToDot {
 			«FOR a:attributes»«a.name»="«a.value»";«ENDFOR»
 			
 			«FOR e: elements»
-			«expand(e)»
+			«e.expand»
 			«ENDFOR»
 		}
 		'''

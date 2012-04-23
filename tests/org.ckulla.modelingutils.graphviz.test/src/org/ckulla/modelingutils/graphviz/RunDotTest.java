@@ -2,6 +2,7 @@ package org.ckulla.modelingutils.graphviz;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
@@ -41,8 +42,8 @@ public class RunDotTest {
 	public void test() throws IOException {
 		ResourceSetImpl rs = new ResourceSetImpl ();
 		Resource r = rs.getResource(URI.createFileURI("model/Foo.ecore"), true);
-		Graph graph = ecoreToGraph.toGraph((EPackage) r.getContents().get(0));
-		graph2Dot.runDot(folder.getRoot(), graph, "png");
+		List<Graph> graphs = ecoreToGraph.toGraph((EPackage) r.getContents().get(0));
+		graph2Dot.runDot(folder.getRoot(), graphs, ((EPackage) r.getContents().get(0)).getName(), "png");
 		assertTrue (new File (folder.getRoot(), "foo.png").exists());
 	}
 }

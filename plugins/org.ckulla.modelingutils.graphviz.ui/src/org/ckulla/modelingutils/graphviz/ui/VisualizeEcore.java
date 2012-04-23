@@ -1,6 +1,8 @@
 package org.ckulla.modelingutils.graphviz.ui;
 
 import java.io.File;
+import java.util.List;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -37,8 +39,8 @@ public class VisualizeEcore extends AbstractHandler {
 			ResourceSetImpl rs = new ResourceSetImpl ();
 			URI uri = URI.createFileURI (file.getLocation().toString());
 			Resource r = rs.getResource(uri, true);
-			Graph graph = ecoreToGraph.toGraph((EPackage) r.getContents().get(0));
-			graphToDot.runDot(new File (uri.toFileString()).getParentFile(), graph, "png");		
+			List<Graph> graphs = ecoreToGraph.toGraph((EPackage) r.getContents().get(0));
+			graphToDot.runDot(new File (uri.toFileString()).getParentFile(), graphs, ((EPackage) r.getContents().get(0)).getName(), "png");		
 		}
 		return o;
 	}

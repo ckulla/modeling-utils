@@ -48,17 +48,17 @@ class FooTest {
 					subgraph "cluster_foo" {
 						label="foo";name="foo";fontname="arial";
 						
-						0 [shape=record,label="{\<\<abstract\>\>\nFoo|name: EString\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
+						0 [shape=record,label="{\<\<abstract\>\>\nFoo|EString myOperation(EInt index)\l|name: EString\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
 						1 [shape=record,label="{\<\<enumeration\>\>\nQux | aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
 						subgraph "cluster_bar" {
 							label="bar";name="bar";fontname="arial";
 							
-							2 [shape=record,label="{Bar|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+							2 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
 						}
 						subgraph "cluster_baz" {
 							label="baz";name="baz";fontname="arial";
 							
-							3 [shape=record,label="{Baz|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+							3 [shape=record,label="{Baz}",fillcolor=grey,fontcolor=black,style=filled, bold];
 						}
 					}
 					2 -> 3 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];
@@ -90,16 +90,16 @@ class FooTest {
 					subgraph "cluster_foo" {
 						label="foo";name="foo";fontname="arial";
 						
-						0 [shape=record,label="{\<\<abstract\>\>\nFoo|name: EString\lqux: Qux\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
+						0 [shape=record,label="{\<\<abstract\>\>\nFoo|EString myOperation(EInt index)\l|name: EString\lqux: Qux\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
 						subgraph "cluster_bar" {
 							label="bar";name="bar";fontname="arial";
 							
-							1 [shape=record,label="{Bar|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+							1 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
 						}
 						subgraph "cluster_baz" {
 							label="baz";name="baz";fontname="arial";
 							
-							2 [shape=record,label="{Baz|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+							2 [shape=record,label="{Baz}",fillcolor=grey,fontcolor=black,style=filled, bold];
 						}
 					}
 					1 -> 2 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];
@@ -132,22 +132,22 @@ class FooTest {
 					subgraph "cluster_bar" {
 						label="bar";name="bar";fontname="arial";
 						
-						0 [shape=record,label="{Bar|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+						0 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
 					}
 					subgraph "cluster_foo" {
 						label="foo";name="foo";fontname="arial";
 						
-						1 [shape=record,label="{\<\<abstract\>\>\nFoo|name: EString\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
+						1 [shape=record,label="{\<\<abstract\>\>\nFoo|EString myOperation(EInt index)\l|name: EString\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
 						2 [shape=record,label="{\<\<enumeration\>\>\nQux | aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
 						subgraph "cluster_bar" {
 							label="bar";name="bar";fontname="arial";
 							
-							3 [shape=record,label="{Bar|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+							3 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
 						}
 						subgraph "cluster_baz" {
 							label="baz";name="baz";fontname="arial";
 							
-							4 [shape=record,label="{Baz|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+							4 [shape=record,label="{Baz}",fillcolor=grey,fontcolor=black,style=filled, bold];
 						}
 					}
 					3 -> 4 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];
@@ -179,22 +179,22 @@ class FooTest {
 					subgraph "cluster_bar" {
 						label="bar";name="bar";fontname="arial";
 						
-						0 [shape=record,label="{Bar|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+						0 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
 					}
 					subgraph "cluster_foo" {
 						label="foo";name="foo";fontname="arial";
 						
-						1 [shape=record,label="{\<\<abstract\>\>\nFoo|name: EString\l}",fillcolor=white,fontcolor=black,style=filled, bold];
+						1 [shape=record,label="{\<\<abstract\>\>\nFoo|EString myOperation(EInt index)\l|name: EString\l}",fillcolor=white,fontcolor=black,style=filled, bold];
 						2 [shape=record,label="{\<\<enumeration\>\>\nQux | aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
 						subgraph "cluster_bar" {
 							label="bar";name="bar";fontname="arial";
 							
-							3 [shape=record,label="{Bar|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+							3 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
 						}
 						subgraph "cluster_baz" {
 							label="baz";name="baz";fontname="arial";
 							
-							4 [shape=record,label="{Baz|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+							4 [shape=record,label="{Baz}",fillcolor=grey,fontcolor=black,style=filled, bold];
 						}
 					}
 					3 -> 4 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];

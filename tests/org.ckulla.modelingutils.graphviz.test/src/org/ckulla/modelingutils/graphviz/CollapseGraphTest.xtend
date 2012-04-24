@@ -54,12 +54,12 @@ class CollapseGraphTest {
 					subgraph "cluster_foo" {
 						label="foo";name="foo";fontname="arial";
 						
-						0 [shape=record,label="{\<\<abstract\>\>\nFoo|name: EString\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
+						0 [shape=record,label="{\<\<abstract\>\>\nFoo|EString myOperation(EInt index)\l|name: EString\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
 						1 [shape=record,label="{\<\<enumeration\>\>\nQux | aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
 						subgraph "cluster_bar" {
 							label="bar";name="bar";fontname="arial";
 							
-							2 [shape=record,label="{Bar|}",fillcolor=grey,fontcolor=black,style=filled, bold];
+							2 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
 						}
 						3 [shape=record,label="{baz}",fillcolor= white,fontcolor=black,style=filled, bold];
 					}

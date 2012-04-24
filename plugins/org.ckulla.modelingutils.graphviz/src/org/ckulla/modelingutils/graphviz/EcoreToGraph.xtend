@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.ENamedElement
 import org.ckulla.modelingutils.graphviz.graph.Attribute
 import org.eclipse.emf.ecore.util.EcoreUtil
 import java.util.Set
+import org.eclipse.emf.ecore.EOperation
 
 class EcoreToGraph {
 
@@ -71,12 +72,16 @@ class EcoreToGraph {
 		'''«if (!containment) "ref "»«name»: «EType.name»\\[«boundsString»\\]'''	
 	}
 
+	def dispatch expand (EOperation it) {
+		'''«EType?.name» «name»(«FOR p:EParameters»«p.EType?.name» «p.name»«ENDFOR»)«FOR e:EExceptions BEFORE "throws" SEPARATOR " ,"»«e.name»«ENDFOR»'''
+	}
 		
 	def Element node (ENamedElement c) {
 		if (!(typeof (EDataType).isAssignableFrom(c.^class)) || showDataTypes) {
 			if (resources.contains (c.eResource)) {
 				createNode (c)	
 			} else {
+				System::out.println (c)
 				if (showReferencedResources && !(c.eResource.URI.toString == "http://www.eclipse.org/emf/2002/Ecore"))
 					createNodeFromOtherResource (c)
 			}
@@ -112,13 +117,13 @@ class EcoreToGraph {
 	def dispatch Element create node [] createNode (EClass c) {
 		attr [ name = SHAPE value = "record" ]
 		attr [ name = LABEL 
-			value = '''"{«if (c.abstract) "\\<\\<abstract\\>\\>\\n"»«c.name»|«expand(c.featuresNotShownAsEdges)»}"'''.toString
+			value = '''"{«if (c.abstract) "\\<\\<abstract\\>\\>\\n"»«c.name»«expandOperations(c.EOperations)»«expandFeatures(c.structuralFeaturesNotShownAsEdges.toList)»}"'''.toString
 		]			
 		attr [ name = FILL_COLOR value = if (c.abstract) "white" else "grey" ]
 		attr [ name = FONT_COLOR value  = "black" ]
 		attr [ name = STYLE value = "filled, bold" ]
 	}
-
+	
 	def dispatch Element create node [] createNode (EEnum c) {
 		attr [ name = SHAPE value = "record" ]
 		attr [ name = LABEL 
@@ -186,12 +191,16 @@ class EcoreToGraph {
 	 * Returns all features of of an EClass which are not shown as edges in
 	 * the diagram.
 	 */
-	def featuresNotShownAsEdges (EClass c) {
+	def structuralFeaturesNotShownAsEdges (EClass c) {
 		c.EStructuralFeatures.filter [ edge(it, c) == null ]
 	}
 	
-	def expand (Iterable<EStructuralFeature> features) {
-		'''«FOR f : features»«f.expand»\l«ENDFOR»'''
+	def expandFeatures (List<EStructuralFeature> it) {
+		'''«IF size>0»|«ENDIF»«FOR f : it»«f.expand»\l«ENDFOR»'''
+	}
+	
+	def expandOperations (List<EOperation> it) {
+		'''«IF size>0»|«ENDIF»«FOR o : it»«o.expand»\l«ENDFOR»'''
 	}
 	
 	/**

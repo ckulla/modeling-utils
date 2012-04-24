@@ -4,6 +4,9 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="foo"
     nsURI="foo" nsPrefix="foo">
   <eClassifiers xsi:type="ecore:EClass" name="Foo" abstract="true">
+    <eOperations name="myOperation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eParameters name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="qux" eType="#//Qux"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="barFromOtherEcore" lowerBound="1"

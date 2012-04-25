@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.ckulla.modelingutils.cppcodegen
-Bundle-Version: 0.2.0
+Bundle-Version: 0.3.0.qualifier
 Bundle-SymbolicName: org.ckulla.modelingutils.cppcodegen;singleton:=true
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Modeling Utilities Javacodegen Test
 Bundle-SymbolicName: org.ckulla.modelingutils.javacodegen.test
-Bundle-Version: 0.2.0
+Bundle-Version: 0.3.0.qualifier
 Fragment-Host: org.ckulla.modelingutils.javacodegen;bundle-version="0.2.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit4;bundle-version="4.8.1",

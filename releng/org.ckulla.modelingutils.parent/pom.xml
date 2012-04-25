@@ -25,21 +25,20 @@
 		<module>../../plugins/org.ckulla.modelingutils.graphviz.ui</module>
 		<module>../../plugins/org.ckulla.modelingutils.javacodegen</module>
 		<module>../../plugins/org.ckulla.modelingutils.utils</module>
-		
+
+		<!-- tests -->		
 		<module>../../tests/org.ckulla.modelingutils.cppcodegen.test</module>
 		<module>../../tests/org.ckulla.modelingutils.emffactory.test</module>
 		<module>../../tests/org.ckulla.modelingutils.graphviz.test</module>
 		<module>../../tests/org.ckulla.modelingutils.javacodegen.test</module>
 
-		<module>../../docs/org.ckulla.modelingutils.doc</module>
-
-
+		<!-- features -->
 		<module>../../features/org.ckulla.modelingutils.feature</module>
 		<module>../../features/org.ckulla.modelingutils.feature.source</module>
 		<module>../../features/org.ckulla.modelingutils.feature.sdk</module>
 
+		<!-- update site -->
 		<module>../../releng/org.ckulla.modelingutils.updatesite</module>
-
 	</modules>
 			
 	<build>
@@ -311,11 +310,6 @@
 			<id>modelingutils-dependencies</id>
 			<layout>p2</layout>
 			<url>file:../../releng/org.ckulla.modelingutils.repository/target/repository</url>
-		</repository>
-		<repository>
-			<id>xdoc</id>
-			<layout>p2</layout>
-			<url>file:../../releng/org.ckulla.modelingutils.repositories/xdoc</url>
 		</repository>
 	</repositories>
             

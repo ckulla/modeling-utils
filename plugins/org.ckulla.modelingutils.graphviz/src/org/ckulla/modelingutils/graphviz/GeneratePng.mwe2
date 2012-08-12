@@ -1,0 +1,25 @@
+module org.ckulla.modelingutils.graphviz.Generate
+
+import org.eclipse.emf.mwe.utils.StandaloneSetup
+import org.eclipse.emf.mwe.utils.DirectoryCleaner
+import org.ckulla.modelingutils.emffactory.XtendEmfFactoryGenerator
+
+Workflow {
+
+    bean = StandaloneSetup {
+        platformUri = ".."
+    }
+
+	bean = org.eclipse.emf.ecore.xcore.XcoreStandaloneSetup : xcore {}
+
+	bean = org.eclipse.xtext.mwe.Reader {
+	  register = xcore
+	}
+	    
+	component = EcoreToDotGenerator {	
+		name = "graph"
+		outputFolder = "model"
+		ecoreModel = "platform:/resource/org.ckulla.modelingutils.graphviz/model/Graph.xcore"
+	}
+	
+}

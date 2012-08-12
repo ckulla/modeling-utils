@@ -41,7 +41,7 @@ class Generator {
 	}
 	
 	def targetFileName (GenPackage p, GenModel m) {
-		outputFolder + m.modelDirectory.substring(1) + "/" + targetPackageName(p).replaceAll("\\.","/") + "/" + targetClassName(p) + ".xtend";	
+		outputFolder + m.modelDirectory + "/" + targetPackageName(p).replaceAll("\\.","/") + "/" + targetClassName(p) + ".xtend";	
 	}
 	
 	def generateFactory (GenPackage p, GenModel m) {

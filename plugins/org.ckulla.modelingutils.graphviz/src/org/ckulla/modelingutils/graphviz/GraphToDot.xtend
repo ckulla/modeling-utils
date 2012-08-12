@@ -81,7 +81,7 @@ class GraphToDot {
 		
 	def dispatch expand (Node it) {
 		'''
-		«id» «expand(attributes)»;
+		«id» «expandAttributes(attributes)»;
 		'''	
 	}
 
@@ -96,7 +96,7 @@ class GraphToDot {
 	}
 
 	def dispatch edges (Edge it) {
-		'''«tail.id» -> «head.id» «expand(attributes)»;
+		'''«tail.id» -> «head.id» «expandAttributes(attributes)»;
 		'''
 	}
 
@@ -104,7 +104,7 @@ class GraphToDot {
 		''''''
 	}
 		
-	def expand (List<Attribute> attributes) {
+	def expandAttributes (List<Attribute> attributes) {
 		'''[«FOR a:attributes SEPARATOR ","»«a.name»=«a.value»«ENDFOR»]'''
 	}
 

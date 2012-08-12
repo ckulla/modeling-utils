@@ -20,6 +20,7 @@
 
 	<modules>
 		<module>../../plugins/org.ckulla.modelingutils.cppcodegen</module>
+		<module>../../plugins/org.ckulla.modelingutils.ecoregenerator</module>
 		<module>../../plugins/org.ckulla.modelingutils.emffactory</module>
 		<module>../../plugins/org.ckulla.modelingutils.graphviz</module>
 		<module>../../plugins/org.ckulla.modelingutils.graphviz.ui</module>

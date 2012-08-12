@@ -1,11 +1,13 @@
 package org.ckulla.modelingutils.emffactory;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
+import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.mwe2.runtime.Mandatory;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowComponent;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
@@ -39,7 +41,7 @@ public class XtendEmfFactoryGenerator implements IWorkflowComponent {
 	public void invoke(IWorkflowContext ctx) {
 		ResourceSet resSet = new ResourceSetImpl();
 		Resource resource = resSet.getResource(URI.createURI(genModel), true);
-		final GenModel genModel = (GenModel) resource.getContents().get(0);
+		final GenModel genModel = (GenModel) EcoreUtil.getObjectByType(resource.getContents(), GenModelPackage.Literals.GEN_MODEL);
 		
 		final Generator generator = Guice.createInjector().getInstance(Generator.class);
 		if (outputFolder != null) {

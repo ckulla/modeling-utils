@@ -1,0 +1,25 @@
+digraph "graph" {
+
+	graph [ fontname = "arial" ]
+	node [ fontname = "arial" ]
+	edge [ fontname = "arial" ]
+	
+	subgraph "cluster_graph" {
+		label="graph";name="graph";fontname="arial";
+		
+		0 [shape=record,label="{\<\<abstract\>\>\nElement}",fillcolor=white,fontcolor=black,style=filled, bold];
+		1 [shape=record,label="{Graph}",fillcolor=grey,fontcolor=black,style=filled, bold];
+		2 [shape=record,label="{Node}",fillcolor=grey,fontcolor=black,style=filled, bold];
+		3 [shape=record,label="{Edge}",fillcolor=grey,fontcolor=black,style=filled, bold];
+		4 [shape=record,label="{Attribute|name: EString\lvalue: EString\l}",fillcolor=grey,fontcolor=black,style=filled, bold];
+	}
+	0 -> 4 [dir=both,label=attributes,arrowtail=diamond,arrowhead=none,weight=50,headlabel="*"];
+	1 -> 0 [dir=both,label=elements,arrowtail=diamond,arrowhead=none,weight=50,headlabel="*"];
+	2 -> 3 [dir=both,label=outgoingEdges,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="*"];
+	2 -> 3 [dir=both,label=incomingEdges,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="*"];
+	3 -> 2 [dir=both,label=head,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="0..1"];
+	3 -> 2 [dir=both,label=tail,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="0..1"];
+	0 -> 1 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+	0 -> 2 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+	0 -> 3 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+}

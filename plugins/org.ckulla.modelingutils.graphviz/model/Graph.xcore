@@ -1,0 +1,36 @@
+@GenModel(modelDirectory="org.ckulla.modelingutils.graphviz/src-gen")
+@GenModel(rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container")
+@Ecore(nsURI="http://ckulla.org/modelingutils/graphviz/Graph")
+package org.ckulla.modelingutils.graphviz.graph
+
+abstract class Element {
+	
+	contains Attribute[] attributes
+}
+
+class Graph extends Element {
+	
+	contains Element[] elements
+}
+
+class Node extends Element {
+	
+	refers Edge[] outgoingEdges opposite head
+
+	refers Edge[] incomingEdges opposite tail
+	
+}
+
+class Edge extends Element {
+
+	refers Node head opposite outgoingEdges
+
+	refers Node tail opposite incomingEdges
+	
+}
+
+class Attribute {
+
+	String name
+	String value
+}

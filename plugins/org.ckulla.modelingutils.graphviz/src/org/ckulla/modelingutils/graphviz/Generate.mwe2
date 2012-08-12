@@ -4,27 +4,35 @@ import org.eclipse.emf.mwe.utils.StandaloneSetup
 import org.eclipse.emf.mwe.utils.DirectoryCleaner
 import org.ckulla.modelingutils.emffactory.XtendEmfFactoryGenerator
 
-var projectName = "org.ckulla.modelingutils.graphviz"
-var genModel = "platform:/resource/${projectName}/model/Graph.genmodel"
-
 Workflow {
 
     bean = StandaloneSetup {
-        scanClassPath = true
         platformUri = ".."
     }
-    
+
+	bean = org.eclipse.emf.ecore.xcore.XcoreStandaloneSetup : xcore {}
+
+	bean = org.eclipse.xtext.mwe.Reader {
+	  register = xcore
+	}
+	    
 	component = DirectoryCleaner {
 		directory = "src-gen"
 	}
 
-	component = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
-		genModel = genModel
+	component = EcoreGenerator {
+		genModel = "platform:/resource/org.ckulla.modelingutils.graphviz/model/Graph.xcore"
 		srcPath = "src"
 	}    
 	
-	component = XtendEmfFactoryGenerator {		
-		genModel = genModel
+	component = XtendEmfFactoryGenerator {	
+		genModel = "platform:/resource/org.ckulla.modelingutils.graphviz/model/Graph.xcore"
 	}
+
+//	component = EcoreToDotGenerator {	
+//		name = "graph"
+//		outputFolder = "model"
+//		ecoreModel = "platform:/resource/org.ckulla.modelingutils.graphviz/model/Graph.xcore"
+//	}
 	
 }

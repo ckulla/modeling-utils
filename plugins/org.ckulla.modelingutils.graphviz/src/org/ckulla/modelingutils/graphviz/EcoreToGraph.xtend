@@ -117,9 +117,9 @@ class EcoreToGraph {
 	def dispatch Element create node [] createNode (EClass c) {
 		attr [ name = SHAPE value = "record" ]
 		attr [ name = LABEL 
-			value = '''"{«if (c.abstract) "\\<\\<abstract\\>\\>\\n"»«c.name»«expandOperations(c.EOperations)»«expandFeatures(c.structuralFeaturesNotShownAsEdges.toList)»}"'''.toString
+			value = '''"{«if (c.^abstract) "\\<\\<abstract\\>\\>\\n"»«c.name»«expandOperations(c.EOperations)»«expandFeatures(c.structuralFeaturesNotShownAsEdges.toList)»}"'''.toString
 		]			
-		attr [ name = FILL_COLOR value = if (c.abstract) "white" else "grey" ]
+		attr [ name = FILL_COLOR value = if (c.^abstract) "white" else "grey" ]
 		attr [ name = FONT_COLOR value  = "black" ]
 		attr [ name = STYLE value = "filled, bold" ]
 	}

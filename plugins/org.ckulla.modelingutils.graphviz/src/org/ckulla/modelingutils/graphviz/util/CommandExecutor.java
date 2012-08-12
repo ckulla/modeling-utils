@@ -10,6 +10,10 @@ public class CommandExecutor {
 
 	Logger log = Logger.getLogger (CommandExecutor.class);
 
+	public StringBuffer stdout = new StringBuffer();
+
+	public StringBuffer stderr = new StringBuffer();
+
 	public int execute(String[] cmdArray, String[] envp, File dir) {
 		try {
 			if (log.isInfoEnabled()) {
@@ -24,21 +28,16 @@ public class CommandExecutor {
 			}
 			Process p = Runtime.getRuntime().exec(cmdArray, envp, dir);
 
-			StringBuffer inBuffer = new StringBuffer();
 			InputStream inStream = p.getInputStream();
-			new InputStreamHandler(inBuffer, inStream);
+			InputStreamHandler stdoutHandler = new InputStreamHandler(stdout, inStream);
 
-			StringBuffer errBuffer = new StringBuffer();
 			InputStream errStream = p.getErrorStream();
-			new InputStreamHandler(errBuffer, errStream);
+			InputStreamHandler stderrHandler = new InputStreamHandler(stderr, errStream);
 
 			p.waitFor();
-
-//			if (inBuffer.length()>0)
-//				org.eclipse.xtend.util.stdlib.IOExtensions.info(inBuffer);
-//			if (errBuffer.length()>0)
-//				org.eclipse.xtend.util.stdlib.IOExtensions.error(errBuffer);
-
+			stdoutHandler.join();
+			stderrHandler.join();
+			
 			return p.exitValue();
 		} catch (Exception err) {
 			err.printStackTrace();

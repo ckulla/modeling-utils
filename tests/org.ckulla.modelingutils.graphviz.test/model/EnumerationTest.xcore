@@ -1,0 +1,10 @@
+package EnuemerationTest
+
+class MyClass {
+	MyEnum myEnum
+}
+
+enum MyEnum {
+	foo
+	bar
+}

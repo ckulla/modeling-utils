@@ -15,4 +15,3 @@ Require-Bundle: org.junit,
  org.apache.log4j;bundle-version="1.2.15",
  org.apache.commons.logging;bundle-version="1.0.4",
  org.ckulla.modelingutils.utils
-

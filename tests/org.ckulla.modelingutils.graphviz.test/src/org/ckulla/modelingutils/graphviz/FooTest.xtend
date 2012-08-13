@@ -16,7 +16,6 @@ import org.junit.runner.RunWith
 
 import com.google.inject.Inject
 import org.eclipse.emf.mwe.utils.StandaloneSetup
-import org.junit.Before
 
 @RunWith(typeof (RulesTestRunner))
 @Rules({ typeof (EmfRegistryRule), typeof(GuiceRule) })

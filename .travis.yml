@@ -1,1 +1,2 @@
+language: java
 script: cd releng/org.ckulla.modelingutils.parent && ./build.py package

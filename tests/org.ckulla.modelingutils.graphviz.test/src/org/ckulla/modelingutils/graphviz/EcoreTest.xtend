@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EcorePackage
 import org.ckulla.modelingutils.graphviz.EcoreToGraph
 import org.ckulla.modelingutils.graphviz.GraphToDot
 import org.junit.Test
-import org.junit.contrib.emf.EmfRegistryRule
 import org.junit.contrib.guice.GuiceRule
 import org.junit.contrib.rules.Rules
 import org.junit.contrib.rules.RulesTestRunner
@@ -15,7 +14,7 @@ import org.junit.runner.RunWith
 import com.google.inject.Inject
 
 @RunWith(typeof (RulesTestRunner))
-@Rules({ typeof (EmfRegistryRule), typeof(GuiceRule) })
+@Rules({ typeof(GuiceRule) })
 class EcoreTest {
 	
 	@Inject

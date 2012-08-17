@@ -10,6 +10,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	EcoreTest.class,
 	RunDotTest.class,
 	EcoreToDotGeneratorTest.class,
+	EnumerationTest.class,
 	CollapseGraphTest.class,
 	DefaultDotCommandProviderTest.class
 	})

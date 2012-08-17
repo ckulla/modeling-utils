@@ -1,27 +1,22 @@
 package org.ckulla.modelingutils.graphviz
 
-import static org.junit.Assert.*
-
+import com.google.inject.Inject
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EPackage
+import org.eclipse.emf.ecore.EcorePackage$Literals
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.ckulla.modelingutils.graphviz.EcoreToGraph
-import org.ckulla.modelingutils.graphviz.GraphToDot
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.emf.ecore.xcore.XcoreStandaloneSetup
 import org.junit.Test
-import org.junit.contrib.emf.EmfRegistryRule
 import org.junit.contrib.guice.GuiceRule
 import org.junit.contrib.rules.Rules
 import org.junit.contrib.rules.RulesTestRunner
 import org.junit.runner.RunWith
 
-import com.google.inject.Inject
-import org.eclipse.emf.mwe.utils.StandaloneSetup
-import org.eclipse.emf.ecore.xcore.XcoreStandaloneSetup
-import org.eclipse.emf.ecore.util.EcoreUtil
-import org.eclipse.emf.ecore.EcorePackage
+import static org.junit.Assert.*
 
 @RunWith(typeof (RulesTestRunner))
-@Rules({ typeof (EmfRegistryRule), typeof(GuiceRule) })
+@Rules({ /*typeof (EmfRegistryRule),*/ typeof(GuiceRule) })
 class EnumerationTest {
 	
 	@Inject
@@ -30,13 +25,9 @@ class EnumerationTest {
 	@Inject
 	GraphToDot graph2Dot
 	
-	@Inject 
-	StandaloneSetup standaloneSetup
-		
 	@Test
 	def void test() {
 		XcoreStandaloneSetup::doSetup()
-		standaloneSetup.setPlatformUri ("..")		
 		val rs = new ResourceSetImpl ()
 		val r = rs.getResource(URI::createFileURI("model/EnumerationTest.xcore"), true)
 		val graph = ecoreToGraph.toGraph(EcoreUtil::getObjectByType(r.getContents(), EcorePackage$Literals::EPACKAGE) as EPackage)
@@ -59,6 +50,5 @@ class EnumerationTest {
 			graph2Dot.toDot(graph, "foo").toString
 		)
 	}
-
 	
 }

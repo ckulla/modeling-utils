@@ -14,4 +14,5 @@ Require-Bundle: org.junit,
  org.ckulla.modelingutils.emffactory;bundle-version="0.2.0",
  org.apache.log4j;bundle-version="1.2.15",
  org.apache.commons.logging;bundle-version="1.0.4",
- org.ckulla.modelingutils.utils
+ org.ckulla.modelingutils.utils,
+ org.eclipse.emf.ecore.xcore;bundle-version="1.0.0"

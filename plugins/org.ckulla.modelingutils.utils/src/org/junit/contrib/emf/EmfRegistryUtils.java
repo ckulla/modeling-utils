@@ -2,6 +2,7 @@ package org.junit.contrib.emf;
 
 import java.util.HashMap;
 
+import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -46,7 +47,6 @@ public class EmfRegistryUtils {
 
 			EValidator.Registry.INSTANCE.putAll (validatorReg);
 			EPackage.Registry.INSTANCE.putAll (epackageReg);
-
 			Resource.Factory.Registry.INSTANCE.getProtocolToFactoryMap ().putAll (protocolToFactoryMap);
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap ().putAll (extensionToFactoryMap);
 			Resource.Factory.Registry.INSTANCE.getContentTypeToFactoryMap ().putAll (contentTypeIdentifierToFactoryMap);
@@ -65,6 +65,9 @@ public class EmfRegistryUtils {
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap ().put ("xmi", new XMIResourceFactoryImpl ());
 		if (!EPackage.Registry.INSTANCE.containsKey (EcorePackage.eNS_URI))
 			EPackage.Registry.INSTANCE.put (EcorePackage.eNS_URI, EcorePackage.eINSTANCE);
+		if (!EPackage.Registry.INSTANCE.containsKey (GenModelPackage.eNS_URI))
+			EPackage.Registry.INSTANCE.put (GenModelPackage.eNS_URI, GenModelPackage.eINSTANCE);
+
 	}
 
 }

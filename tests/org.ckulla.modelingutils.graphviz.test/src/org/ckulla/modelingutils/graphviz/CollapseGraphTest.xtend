@@ -19,7 +19,7 @@ import org.ckulla.modelingutils.graphviz.graph.Graph
 import org.eclipse.emf.mwe.utils.StandaloneSetup
 
 @RunWith(typeof (RulesTestRunner))
-@Rules({ typeof (EmfRegistryRule), typeof(GuiceRule) })
+@Rules({ typeof(GuiceRule) })
 class CollapseGraphTest {
 	
 	@Inject

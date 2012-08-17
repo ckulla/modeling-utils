@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.Test;
-import org.junit.contrib.emf.EmfRegistryRule;
 import org.junit.contrib.guice.GuiceRule;
 import org.junit.contrib.rules.Rules;
 import org.junit.contrib.rules.RulesTestRunner;
@@ -26,7 +25,7 @@ import org.junit.runner.RunWith;
 import com.google.inject.Inject;
 
 @RunWith(RulesTestRunner.class)
-@Rules({EmfRegistryRule.class, GuiceRule.class})
+@Rules({GuiceRule.class})
 public class RunDotTest {
 
 	@Rule

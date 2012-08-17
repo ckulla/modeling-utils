@@ -9,11 +9,10 @@ import static org.junit.Assert.*
 import org.junit.runner.RunWith
 import org.junit.contrib.rules.Rules
 import org.junit.contrib.rules.RulesTestRunner
-import org.junit.contrib.emf.EmfRegistryRule
 import org.junit.contrib.guice.GuiceRule
 
 @RunWith(typeof (RulesTestRunner))
-@Rules({ typeof(EmfRegistryRule), typeof (GuiceRule) })
+@Rules({ typeof (GuiceRule) })
 class EcoreToDotGeneratorTest {
 
 	@Test

@@ -1,24 +1,20 @@
 package org.ckulla.modelingutils.graphviz
 
-import static org.junit.Assert.*
-
+import com.google.inject.Inject
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.ckulla.modelingutils.graphviz.EcoreToGraph
-import org.ckulla.modelingutils.graphviz.GraphToDot
+import org.eclipse.emf.mwe.utils.StandaloneSetup
 import org.junit.Test
-import org.junit.contrib.emf.EmfRegistryRule
 import org.junit.contrib.guice.GuiceRule
 import org.junit.contrib.rules.Rules
 import org.junit.contrib.rules.RulesTestRunner
 import org.junit.runner.RunWith
 
-import com.google.inject.Inject
-import org.eclipse.emf.mwe.utils.StandaloneSetup
+import static org.junit.Assert.*
 
 @RunWith(typeof (RulesTestRunner))
-@Rules({ typeof (EmfRegistryRule), typeof(GuiceRule) })
+@Rules({ typeof(GuiceRule) })
 class FooTest {
 	
 	@Inject

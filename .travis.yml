@@ -1,0 +1,1 @@
+script: cd releng/org.ckulla.modelingutils.parent && ./build.sh

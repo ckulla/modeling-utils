@@ -3,10 +3,6 @@ package org.ckulla.modelingutils.cppcodegen.generator;
 import java.io.File;
 import java.io.IOException;
 
-import org.junit.contrib.rules.RulesTestRunner;
-import org.junit.contrib.rules.Rules;
-import org.junit.contrib.emf.EmfRegistryRule;
-import org.junit.contrib.guice.GuiceRule;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +15,10 @@ import com.google.inject.Inject;
 
 import org.ckulla.modelingutils.cppcodegen.generator.Generator;
 import org.ckulla.modelingutils.cppcodegen.cpp.CppModel;
+import org.ckulla.modelingutils.testutils.emf.EmfRegistryRule;
+import org.ckulla.modelingutils.testutils.guice.GuiceRule;
+import org.ckulla.modelingutils.testutils.rules.Rules;
+import org.ckulla.modelingutils.testutils.rules.RulesTestRunner;
 
 @RunWith(RulesTestRunner.class)
 @Rules({ EmfRegistryRule.class, GuiceRule.class })

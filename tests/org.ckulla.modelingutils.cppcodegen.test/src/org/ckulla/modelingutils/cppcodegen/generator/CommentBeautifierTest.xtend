@@ -2,12 +2,12 @@ package org.ckulla.modelingutils.cppcodegen.generator
 
 import com.google.inject.Inject
 import org.junit.Test
-import org.junit.contrib.guice.GuiceRule
-import org.junit.contrib.rules.Rules
-import org.junit.contrib.rules.RulesTestRunner
 import org.junit.runner.RunWith
 
 import static junit.framework.Assert.*
+import org.ckulla.modelingutils.testutils.rules.RulesTestRunner
+import org.ckulla.modelingutils.testutils.guice.GuiceRule
+import org.ckulla.modelingutils.testutils.rules.Rules
 
 @RunWith(typeof(RulesTestRunner))
 @Rules({ typeof(GuiceRule) })

@@ -1,4 +1,4 @@
-package org.junit.contrib.guice;
+package org.ckulla.modelingutils.testutils.guice;
 
 import org.junit.Assert;
 import org.junit.Rule;

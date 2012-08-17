@@ -1,11 +1,11 @@
 package org.ckulla.modelingutils.cppcodegen.generator
 
 import org.junit.Test
-import org.junit.contrib.emf.EmfRegistryRule
-import org.junit.contrib.guice.GuiceRule
-import org.junit.contrib.rules.Rules
-import org.junit.contrib.rules.RulesTestRunner
 import org.junit.runner.RunWith
+import org.ckulla.modelingutils.testutils.rules.RulesTestRunner
+import org.ckulla.modelingutils.testutils.emf.EmfRegistryRule
+import org.ckulla.modelingutils.testutils.guice.GuiceRule
+import org.ckulla.modelingutils.testutils.rules.Rules
 
 @RunWith(typeof(RulesTestRunner))
 @Rules({ typeof(EmfRegistryRule), typeof(GuiceRule) })

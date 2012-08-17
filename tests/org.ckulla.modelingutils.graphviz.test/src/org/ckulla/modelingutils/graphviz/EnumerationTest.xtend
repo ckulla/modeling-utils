@@ -8,15 +8,15 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.emf.ecore.xcore.XcoreStandaloneSetup
 import org.junit.Test
-import org.junit.contrib.guice.GuiceRule
-import org.junit.contrib.rules.Rules
-import org.junit.contrib.rules.RulesTestRunner
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
+import org.ckulla.modelingutils.testutils.rules.RulesTestRunner
+import org.ckulla.modelingutils.testutils.guice.GuiceRule
+import org.ckulla.modelingutils.testutils.rules.Rules
 
 @RunWith(typeof (RulesTestRunner))
-@Rules({ /*typeof (EmfRegistryRule),*/ typeof(GuiceRule) })
+@Rules({typeof(GuiceRule) })
 class EnumerationTest {
 	
 	@Inject

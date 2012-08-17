@@ -1,6 +1,6 @@
-package org.junit.contrib.guice;
+package org.ckulla.modelingutils.testutils.guice;
 
-import org.junit.contrib.rules.RulesTestRunner;
+import org.ckulla.modelingutils.testutils.rules.RulesTestRunner;
 import org.junit.runners.model.InitializationError;
 
 public class GuiceTestRunner extends RulesTestRunner {

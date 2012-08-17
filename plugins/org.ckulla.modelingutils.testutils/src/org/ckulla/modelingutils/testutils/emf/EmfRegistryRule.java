@@ -1,6 +1,6 @@
-package org.junit.contrib.emf;
+package org.ckulla.modelingutils.testutils.emf;
 
-import org.junit.contrib.emf.EmfRegistryUtils.EmfRegistryState;
+import org.ckulla.modelingutils.testutils.emf.EmfRegistryUtils.EmfRegistryState;
 import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;

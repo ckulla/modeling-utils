@@ -1,4 +1,4 @@
-package org.junit.contrib.emf;
+package org.ckulla.modelingutils.testutils.emf;
 
 import java.util.HashMap;
 

@@ -6,12 +6,12 @@ import org.eclipse.emf.ecore.EPackage
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.mwe.utils.StandaloneSetup
 import org.junit.Test
-import org.junit.contrib.guice.GuiceRule
-import org.junit.contrib.rules.Rules
-import org.junit.contrib.rules.RulesTestRunner
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
+import org.ckulla.modelingutils.testutils.rules.RulesTestRunner
+import org.ckulla.modelingutils.testutils.guice.GuiceRule
+import org.ckulla.modelingutils.testutils.rules.Rules
 
 @RunWith(typeof (RulesTestRunner))
 @Rules({ typeof(GuiceRule) })

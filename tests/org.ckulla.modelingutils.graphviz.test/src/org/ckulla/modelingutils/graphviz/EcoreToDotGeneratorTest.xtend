@@ -7,9 +7,9 @@ import org.junit.After
 
 import static org.junit.Assert.*
 import org.junit.runner.RunWith
-import org.junit.contrib.rules.Rules
-import org.junit.contrib.rules.RulesTestRunner
-import org.junit.contrib.guice.GuiceRule
+import org.ckulla.modelingutils.testutils.rules.RulesTestRunner
+import org.ckulla.modelingutils.testutils.guice.GuiceRule
+import org.ckulla.modelingutils.testutils.rules.Rules
 
 @RunWith(typeof (RulesTestRunner))
 @Rules({ typeof (GuiceRule) })

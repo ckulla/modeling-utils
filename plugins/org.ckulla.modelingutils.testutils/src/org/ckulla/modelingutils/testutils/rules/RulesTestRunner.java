@@ -1,4 +1,4 @@
-package org.junit.contrib.rules;
+package org.ckulla.modelingutils.testutils.rules;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.junit.contrib.rules;
+package org.ckulla.modelingutils.testutils.rules;
 
 import java.lang.annotation.Annotation;
 import java.util.List;

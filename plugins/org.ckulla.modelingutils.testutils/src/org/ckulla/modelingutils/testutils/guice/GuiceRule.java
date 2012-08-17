@@ -1,9 +1,9 @@
-package org.junit.contrib.guice;
+package org.ckulla.modelingutils.testutils.guice;
 
 import java.util.List;
 
-import org.junit.contrib.rules.Lists;
-import org.junit.contrib.rules.ReflectionUtil;
+import org.ckulla.modelingutils.testutils.rules.Lists;
+import org.ckulla.modelingutils.testutils.rules.ReflectionUtil;
 import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;

@@ -20,7 +20,7 @@ Workflow {
 		directory = "src-gen"
 	}
 
-	component = EcoreGenerator {
+	component = org.ckulla.modelingutils.ecoregenerator.EcoreGenerator {
 		genModel = "platform:/resource/org.ckulla.modelingutils.graphviz/model/Graph.xcore"
 		srcPath = "src"
 	}    

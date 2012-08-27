@@ -1,4 +1,4 @@
-package org.ckulla.modelingutils.graphviz;
+package org.ckulla.modelingutils.ecoregenerator;
 
 import static com.google.common.collect.Lists.newArrayList;
 

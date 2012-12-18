@@ -12,7 +12,8 @@ import org.junit.runners.Suite.SuiteClasses;
 	EcoreToDotGeneratorTest.class,
 	EnumerationTest.class,
 	CollapseGraphTest.class,
-	DefaultDotCommandProviderTest.class
+	DefaultDotCommandProviderTest.class,
+	DataTypeTest.class
 	})
 public class AllTests {
 

@@ -77,11 +77,10 @@ class EcoreToGraph {
 	}
 		
 	def Element node (ENamedElement c) {
-		if (!(typeof (EDataType).isAssignableFrom(c.^class)) || showDataTypes) {
+		if (!(typeof (EDataType).isAssignableFrom(c.^class)) || showDataTypes || (c instanceof EEnum)) {
 			if (resources.contains (c.eResource)) {
 				createNode (c)	
 			} else {
-				System::out.println (c)
 				if (showReferencedResources && !(c.eResource.URI.toString == "http://www.eclipse.org/emf/2002/Ecore"))
 					createNodeFromOtherResource (c)
 			}
@@ -90,25 +89,25 @@ class EcoreToGraph {
 	
 	def dispatch Element createNode (EPackage p) {
 		graph [
-			attr [ name = LABEL value = '''«/*\<\<package\>\>\n*/»«p.name»'''.toString]	
+			attr [ name = LABEL value = '''\<\<package\>\>\n«p.name»'''.toString]	
 			attr [ name = NAME value = p.name ]	
 			attr [ name = FONT_NAME value = "arial"]
 			
-			elements.addIfNotNull (p.EClassifiers.map [ node ])
-			elements.addIfNotNull (p.ESubpackages.map [ node ])
+			elements.addAll (p.EClassifiers.map [ node ].filterNull)
+			elements.addAll (p.ESubpackages.map [ node ].filterNull)
 			// add all edges resulting from structural features
 			for (c : p.classes) {
-				elements.addIfNotNull (c.EStructuralFeatures.map [ edge(c) ])
+				elements.addAll (c.EStructuralFeatures.map [ edge(c) ].filterNull)
 			}
 			// add super type edges
-			elements.addIfNotNull (
-				p.classes.map [ base | (base as EClass).ESuperTypes.map [ superTypeEdge (base as EClass) ] ].flatten)
+			elements.addAll (
+				p.classes.map [ base | (base as EClass).ESuperTypes.map [ superTypeEdge (base as EClass) ] ].flatten.filterNull)
 		]
 	}
 
 	def dispatch Element create node [] createNode (EDataType c) {
 		attr [ name = SHAPE value = "record" ]
-		attr [ name = LABEL value = '''"{«c.name»|}"'''.toString ]			
+		attr [ name = LABEL value = '''"{\<\<datatype\>\>\n«c.name»|«c.instanceTypeName»}"'''.toString ]			
 		attr [ name = FILL_COLOR value =" white" ]
 		attr [ name = FONT_COLOR value  = "black" ]
 		attr [ name = STYLE value = "filled, bold" ]
@@ -127,7 +126,7 @@ class EcoreToGraph {
 	def dispatch Element create node [] createNode (EEnum c) {
 		attr [ name = SHAPE value = "record" ]
 		attr [ name = LABEL 
-			value = '''"{\<\<enumeration\>\>\n«c.name» | «FOR l:c.ELiterals»«l.name»\l«ENDFOR»}"'''.toString
+			value = '''"{\<\<enumeration\>\>\n«c.name»|«FOR l:c.ELiterals»«l.name»\l«ENDFOR»}"'''.toString
 		]			
 		attr [ name = FILL_COLOR value = "grey" ]			
 		attr [ name = FONT_COLOR value = "black" ]			
@@ -140,7 +139,7 @@ class EcoreToGraph {
 	}
 
 	def Element create graph [] createNodeFromOtherResource  (EPackage p) {
-		attr [ name = LABEL value = '''«/*\<\<package\>\>\n*/»«p.name»'''.toString]	
+		attr [ name = LABEL value = '''\<\<package\>\>\n«p.name»'''.toString]	
 		attr [ name = NAME value = p.name ]	
 		attr [ name = FONT_NAME value = "arial"]
 		if (p.eContainer != null)
@@ -234,8 +233,4 @@ class EcoreToGraph {
 			else
 				lowerBound.toString + ".." + if (upperBound == -1) "*" else upperBound
 	}
-	
-	def <T> addIfNotNull (List<T> it, Iterable<? extends T> toAdd) {
-		addAll (toAdd.filter [ it != null ])		
-	}		 
 }

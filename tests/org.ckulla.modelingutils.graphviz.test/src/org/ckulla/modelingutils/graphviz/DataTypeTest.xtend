@@ -17,7 +17,7 @@ import org.ckulla.modelingutils.testutils.rules.Rules
 
 @RunWith(typeof (RulesTestRunner))
 @Rules({typeof(GuiceRule) })
-class EnumerationTest {
+class DataTypeTest {
 	
 	@Inject
 	EcoreToGraph ecoreToGraph
@@ -29,7 +29,7 @@ class EnumerationTest {
 	def void test() {
 		XcoreStandaloneSetup::doSetup()
 		val rs = new ResourceSetImpl ()
-		val r = rs.getResource(URI::createFileURI("model/DataTypeTest.xcore"), true)
+		val r = rs.getResource(URI::createFileURI("model/EnumerationTest.xcore"), true)
 		val graph = ecoreToGraph.toGraph(EcoreUtil::getObjectByType(r.getContents(), EcorePackage$Literals::EPACKAGE) as EPackage)
 		assertEquals ('''
 			digraph "foo" {
@@ -38,11 +38,11 @@ class EnumerationTest {
 				node [ fontname = "arial" ]
 				edge [ fontname = "arial" ]
 				
-				subgraph "cluster_DataTypeTest" {
-					label="\<\<package\>\>\nDataTypeTest";name="DataTypeTest";fontname="arial";
+				subgraph "cluster_EnuemerationTest" {
+					label="\<\<package\>\>\nEnuemerationTest";name="EnuemerationTest";fontname="arial";
 					
 					0 [shape=record,label="{MyClass}",fillcolor=grey,fontcolor=black,style=filled, bold];
-					1 [shape=record,label="{\<\<datatype\>\>\nMyDataType|org.ckulla.modelingutils.graphviz.MyDataType}",fillcolor= white,fontcolor=black,style=filled, bold];
+					1 [shape=record,label="{\<\<enumeration\>\>\nMyEnum|foo\lbar\l}",fillcolor=grey,fontcolor=black,style=filled];
 				}
 				0 -> 1 [dir=both,label=myEnum,arrowtail=diamond,arrowhead=none,weight=25];
 			}

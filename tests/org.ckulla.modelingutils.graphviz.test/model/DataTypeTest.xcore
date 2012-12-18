@@ -1,0 +1,7 @@
+package DataTypeTest
+
+class MyClass {
+	MyDataType myEnum
+}
+
+type MyDataType wraps org.ckulla.modelingutils.graphviz.MyDataType

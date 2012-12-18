@@ -44,30 +44,30 @@ class CollapseGraphTest {
 		val graphs = ecoreToGraph.toGraph(r.getContents().get(0) as EPackage)
 		assertEquals (
 			'''
-				digraph "foo" {
+			digraph "foo" {
+			
+				graph [ fontname = "arial" ]
+				node [ fontname = "arial" ]
+				edge [ fontname = "arial" ]
 				
-					graph [ fontname = "arial" ]
-					node [ fontname = "arial" ]
-					edge [ fontname = "arial" ]
+				subgraph "cluster_foo" {
+					label="\<\<package\>\>\nfoo";name="foo";fontname="arial";
 					
-					subgraph "cluster_foo" {
-						label="foo";name="foo";fontname="arial";
+					0 [shape=record,label="{\<\<abstract\>\>\nFoo|EString myOperation(EInt index)\l|name: EString\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
+					1 [shape=record,label="{\<\<enumeration\>\>\nQux|aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
+					subgraph "cluster_bar" {
+						label="\<\<package\>\>\nbar";name="bar";fontname="arial";
 						
-						0 [shape=record,label="{\<\<abstract\>\>\nFoo|EString myOperation(EInt index)\l|name: EString\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
-						1 [shape=record,label="{\<\<enumeration\>\>\nQux | aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
-						subgraph "cluster_bar" {
-							label="bar";name="bar";fontname="arial";
-							
-							2 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
-						}
-						3 [shape=record,label="{baz}",fillcolor= white,fontcolor=black,style=filled, bold];
+						2 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
 					}
-					0 -> 1 [dir=both,label=qux,arrowtail=diamond,arrowhead=none,weight=25];
-					2 -> 3 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];
-					3 -> 0 [dir=both,label=foo,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="*"];
-					0 -> 3 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
-					0 -> 2 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+					3 [shape=record,label="{\<\<package\>\>\nbaz}",fillcolor= white,fontcolor=black,style=filled, bold];
 				}
+				0 -> 1 [dir=both,label=qux,arrowtail=diamond,arrowhead=none,weight=25];
+				2 -> 3 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];
+				3 -> 0 [dir=both,label=foo,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="*"];
+				0 -> 3 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+				0 -> 2 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+			}
 			'''.toString,
 			graph2Dot.toDot(newArrayList(graphs.head.collapse [ name == "baz"] as Graph), "foo").toString
 			

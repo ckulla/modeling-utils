@@ -34,34 +34,34 @@ class FooTest {
 		val graph = ecoreToGraph.toGraph(r.getContents().get(0) as EPackage)
 		assertEquals (
 			'''
-				digraph "foo" {
+			digraph "foo" {
+			
+				graph [ fontname = "arial" ]
+				node [ fontname = "arial" ]
+				edge [ fontname = "arial" ]
 				
-					graph [ fontname = "arial" ]
-					node [ fontname = "arial" ]
-					edge [ fontname = "arial" ]
+				subgraph "cluster_foo" {
+					label="\<\<package\>\>\nfoo";name="foo";fontname="arial";
 					
-					subgraph "cluster_foo" {
-						label="foo";name="foo";fontname="arial";
+					0 [shape=record,label="{\<\<abstract\>\>\nFoo|EString myOperation(EInt index)\l|name: EString\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
+					1 [shape=record,label="{\<\<enumeration\>\>\nQux|aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
+					subgraph "cluster_bar" {
+						label="\<\<package\>\>\nbar";name="bar";fontname="arial";
 						
-						0 [shape=record,label="{\<\<abstract\>\>\nFoo|EString myOperation(EInt index)\l|name: EString\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
-						1 [shape=record,label="{\<\<enumeration\>\>\nQux | aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
-						subgraph "cluster_bar" {
-							label="bar";name="bar";fontname="arial";
-							
-							2 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
-						}
-						subgraph "cluster_baz" {
-							label="baz";name="baz";fontname="arial";
-							
-							3 [shape=record,label="{Baz}",fillcolor=grey,fontcolor=black,style=filled, bold];
-						}
+						2 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
 					}
-					2 -> 3 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];
-					0 -> 2 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
-					3 -> 0 [dir=both,label=foo,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="*"];
-					0 -> 3 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
-					0 -> 1 [dir=both,label=qux,arrowtail=diamond,arrowhead=none,weight=25];
+					subgraph "cluster_baz" {
+						label="\<\<package\>\>\nbaz";name="baz";fontname="arial";
+						
+						3 [shape=record,label="{Baz}",fillcolor=grey,fontcolor=black,style=filled, bold];
+					}
 				}
+				2 -> 3 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];
+				0 -> 2 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+				3 -> 0 [dir=both,label=foo,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="*"];
+				0 -> 3 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+				0 -> 1 [dir=both,label=qux,arrowtail=diamond,arrowhead=none,weight=25];
+			}
 			'''.toString,
 			graph2Dot.toDot(graph, "foo").toString
 		)
@@ -76,32 +76,34 @@ class FooTest {
 		val graph = ecoreToGraph.toGraph(r.getContents().get(0) as EPackage)
 		assertEquals (
 			'''
-				digraph "foo" {
+			digraph "foo" {
+			
+				graph [ fontname = "arial" ]
+				node [ fontname = "arial" ]
+				edge [ fontname = "arial" ]
 				
-					graph [ fontname = "arial" ]
-					node [ fontname = "arial" ]
-					edge [ fontname = "arial" ]
+				subgraph "cluster_foo" {
+					label="\<\<package\>\>\nfoo";name="foo";fontname="arial";
 					
-					subgraph "cluster_foo" {
-						label="foo";name="foo";fontname="arial";
+					0 [shape=record,label="{\<\<abstract\>\>\nFoo|EString myOperation(EInt index)\l|name: EString\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
+					1 [shape=record,label="{\<\<enumeration\>\>\nQux|aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
+					subgraph "cluster_bar" {
+						label="\<\<package\>\>\nbar";name="bar";fontname="arial";
 						
-						0 [shape=record,label="{\<\<abstract\>\>\nFoo|EString myOperation(EInt index)\l|name: EString\lqux: Qux\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
-						subgraph "cluster_bar" {
-							label="bar";name="bar";fontname="arial";
-							
-							1 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
-						}
-						subgraph "cluster_baz" {
-							label="baz";name="baz";fontname="arial";
-							
-							2 [shape=record,label="{Baz}",fillcolor=grey,fontcolor=black,style=filled, bold];
-						}
+						2 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
 					}
-					1 -> 2 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];
-					0 -> 1 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
-					2 -> 0 [dir=both,label=foo,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="*"];
-					0 -> 2 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+					subgraph "cluster_baz" {
+						label="\<\<package\>\>\nbaz";name="baz";fontname="arial";
+						
+						3 [shape=record,label="{Baz}",fillcolor=grey,fontcolor=black,style=filled, bold];
+					}
 				}
+				2 -> 3 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];
+				0 -> 2 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+				3 -> 0 [dir=both,label=foo,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="*"];
+				0 -> 3 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+				0 -> 1 [dir=both,label=qux,arrowtail=diamond,arrowhead=none,weight=25];
+			}
 			'''.toString,
 			graph2Dot.toDot(graph, "foo").toString
 		)
@@ -118,39 +120,39 @@ class FooTest {
 		)
 		assertEquals (
 			'''
-				digraph "fooAndBar" {
+			digraph "fooAndBar" {
+			
+				graph [ fontname = "arial" ]
+				node [ fontname = "arial" ]
+				edge [ fontname = "arial" ]
 				
-					graph [ fontname = "arial" ]
-					node [ fontname = "arial" ]
-					edge [ fontname = "arial" ]
+				subgraph "cluster_bar" {
+					label="\<\<package\>\>\nbar";name="bar";fontname="arial";
 					
-					subgraph "cluster_bar" {
-						label="bar";name="bar";fontname="arial";
-						
-						0 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
-					}
-					subgraph "cluster_foo" {
-						label="foo";name="foo";fontname="arial";
-						
-						1 [shape=record,label="{\<\<abstract\>\>\nFoo|EString myOperation(EInt index)\l|name: EString\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
-						2 [shape=record,label="{\<\<enumeration\>\>\nQux | aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
-						subgraph "cluster_bar" {
-							label="bar";name="bar";fontname="arial";
-							
-							3 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
-						}
-						subgraph "cluster_baz" {
-							label="baz";name="baz";fontname="arial";
-							
-							4 [shape=record,label="{Baz}",fillcolor=grey,fontcolor=black,style=filled, bold];
-						}
-					}
-					3 -> 4 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];
-					1 -> 3 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
-					4 -> 1 [dir=both,label=foo,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="*"];
-					1 -> 4 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
-					1 -> 2 [dir=both,label=qux,arrowtail=diamond,arrowhead=none,weight=25];
+					0 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
 				}
+				subgraph "cluster_foo" {
+					label="\<\<package\>\>\nfoo";name="foo";fontname="arial";
+					
+					1 [shape=record,label="{\<\<abstract\>\>\nFoo|EString myOperation(EInt index)\l|name: EString\lref barFromOtherEcore: Bar\\[1..*\\]\l}",fillcolor=white,fontcolor=black,style=filled, bold];
+					2 [shape=record,label="{\<\<enumeration\>\>\nQux|aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
+					subgraph "cluster_bar" {
+						label="\<\<package\>\>\nbar";name="bar";fontname="arial";
+						
+						3 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
+					}
+					subgraph "cluster_baz" {
+						label="\<\<package\>\>\nbaz";name="baz";fontname="arial";
+						
+						4 [shape=record,label="{Baz}",fillcolor=grey,fontcolor=black,style=filled, bold];
+					}
+				}
+				3 -> 4 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];
+				1 -> 3 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+				4 -> 1 [dir=both,label=foo,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="*"];
+				1 -> 4 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+				1 -> 2 [dir=both,label=qux,arrowtail=diamond,arrowhead=none,weight=25];
+			}
 			'''.toString,
 			graph2Dot.toDot(graph, "fooAndBar").toString
 		)
@@ -165,40 +167,40 @@ class FooTest {
 		val graph = ecoreToGraph.toGraph(r.getContents().get(0) as EPackage)
 		assertEquals (
 			'''
-				digraph "foo" {
+			digraph "foo" {
+			
+				graph [ fontname = "arial" ]
+				node [ fontname = "arial" ]
+				edge [ fontname = "arial" ]
 				
-					graph [ fontname = "arial" ]
-					node [ fontname = "arial" ]
-					edge [ fontname = "arial" ]
+				subgraph "cluster_bar" {
+					label="\<\<package\>\>\nbar";name="bar";fontname="arial";
 					
-					subgraph "cluster_bar" {
-						label="bar";name="bar";fontname="arial";
-						
-						0 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
-					}
-					subgraph "cluster_foo" {
-						label="foo";name="foo";fontname="arial";
-						
-						1 [shape=record,label="{\<\<abstract\>\>\nFoo|EString myOperation(EInt index)\l|name: EString\l}",fillcolor=white,fontcolor=black,style=filled, bold];
-						2 [shape=record,label="{\<\<enumeration\>\>\nQux | aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
-						subgraph "cluster_bar" {
-							label="bar";name="bar";fontname="arial";
-							
-							3 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
-						}
-						subgraph "cluster_baz" {
-							label="baz";name="baz";fontname="arial";
-							
-							4 [shape=record,label="{Baz}",fillcolor=grey,fontcolor=black,style=filled, bold];
-						}
-					}
-					3 -> 4 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];
-					1 -> 3 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
-					4 -> 1 [dir=both,label=foo,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="*"];
-					1 -> 4 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
-					1 -> 2 [dir=both,label=qux,arrowtail=diamond,arrowhead=none,weight=25];
-					1 -> 0 [dir=both,label=barFromOtherEcore,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="1..*"];
+					0 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
 				}
+				subgraph "cluster_foo" {
+					label="\<\<package\>\>\nfoo";name="foo";fontname="arial";
+					
+					1 [shape=record,label="{\<\<abstract\>\>\nFoo|EString myOperation(EInt index)\l|name: EString\l}",fillcolor=white,fontcolor=black,style=filled, bold];
+					2 [shape=record,label="{\<\<enumeration\>\>\nQux|aLiteral\lanotherLiteral\l}",fillcolor=grey,fontcolor=black,style=filled];
+					subgraph "cluster_bar" {
+						label="\<\<package\>\>\nbar";name="bar";fontname="arial";
+						
+						3 [shape=record,label="{Bar}",fillcolor=grey,fontcolor=black,style=filled, bold];
+					}
+					subgraph "cluster_baz" {
+						label="\<\<package\>\>\nbaz";name="baz";fontname="arial";
+						
+						4 [shape=record,label="{Baz}",fillcolor=grey,fontcolor=black,style=filled, bold];
+					}
+				}
+				3 -> 4 [dir=both,label=baz,arrowtail=diamond,arrowhead=none,weight=50,headlabel="0..1"];
+				1 -> 3 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+				4 -> 1 [dir=both,label=foo,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="*"];
+				1 -> 4 [dir=both,arrowtail=empty,arrowhead=none,weight=100];
+				1 -> 2 [dir=both,label=qux,arrowtail=diamond,arrowhead=none,weight=25];
+				1 -> 0 [dir=both,label=barFromOtherEcore,arrowtail=ediamond,arrowhead=none,weight=1,headlabel="1..*"];
+			}
 			'''.toString,
 			graph2Dot.toDot(graph, "foo").toString
 		)

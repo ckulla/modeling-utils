@@ -37,7 +37,7 @@ public class EcoreToDotGenerator implements IWorkflowComponent {
 	
 	String dotCommand;
 	
-	boolean showDataTypes;
+	boolean showDataTypes = true;
 	
 	boolean showReferencedResources;
 	

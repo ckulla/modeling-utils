@@ -1,2 +1,2 @@
 language: java
-script: cd releng/org.ckulla.modelingutils.parent && ./build.py package
+script: which dot && cd releng/org.ckulla.modelingutils.parent && ./build.py package

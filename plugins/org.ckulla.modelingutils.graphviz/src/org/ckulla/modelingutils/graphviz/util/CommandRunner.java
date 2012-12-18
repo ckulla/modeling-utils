@@ -3,46 +3,42 @@ package org.ckulla.modelingutils.graphviz.util;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
-public class CommandExecutor {
+public class CommandRunner {
 
-	Logger log = Logger.getLogger (CommandExecutor.class);
+	Logger log = Logger.getLogger (CommandRunner.class);
 
 	public StringBuffer stdout = new StringBuffer();
 
 	public StringBuffer stderr = new StringBuffer();
 
-	public int execute(String[] cmdArray, String[] envp, File dir) {
-		try {
-			if (log.isInfoEnabled()) {
-				String s = "";
-				for (String c : cmdArray) {
-					if (s != "") {
-						s = s + " ";
-					}
-					s = s + c;
+	public int run(String[] cmdArray, String[] envp, File dir) throws IOException, InterruptedException {
+		if (log.isInfoEnabled()) {
+			String s = "";
+			for (String c : cmdArray) {
+				if (s != "") {
+					s = s + " ";
 				}
-				log.info ("Executing command: " + s);
+				s = s + c;
 			}
-			Process p = Runtime.getRuntime().exec(cmdArray, envp, dir);
-
-			InputStream inStream = p.getInputStream();
-			InputStreamHandler stdoutHandler = new InputStreamHandler(stdout, inStream);
-
-			InputStream errStream = p.getErrorStream();
-			InputStreamHandler stderrHandler = new InputStreamHandler(stderr, errStream);
-
-			p.waitFor();
-			stdoutHandler.join();
-			stderrHandler.join();
-			
-			return p.exitValue();
-		} catch (Exception err) {
-			err.printStackTrace();
+			log.info ("Executing command: " + s);
 		}
-		return 0;
+		Process p = Runtime.getRuntime().exec(cmdArray, envp, dir);
+
+		InputStream inStream = p.getInputStream();
+		InputStreamHandler stdoutHandler = new InputStreamHandler(stdout, inStream);
+
+		InputStream errStream = p.getErrorStream();
+		InputStreamHandler stderrHandler = new InputStreamHandler(stderr, errStream);
+
+		p.waitFor();
+		stdoutHandler.join();
+		stderrHandler.join();
+		
+		return p.exitValue();
 	}
 	
 	static class InputStreamHandler extends Thread {

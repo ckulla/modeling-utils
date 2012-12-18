@@ -2,4 +2,4 @@ before_install:
  - sudo apt-get update -qq
  - sudo apt-get install -qq graphviz
 language: java
-script: which dot && cd releng/org.ckulla.modelingutils.parent && ./build.py package
+script: cd releng/org.ckulla.modelingutils.parent && ./build.py package

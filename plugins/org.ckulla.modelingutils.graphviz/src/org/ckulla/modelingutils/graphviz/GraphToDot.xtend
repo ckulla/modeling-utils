@@ -1,25 +1,21 @@
 package org.ckulla.modelingutils.graphviz
 
 import com.google.inject.Inject
-
 import java.util.List
-
 import java.io.File
 import java.io.FileWriter
-
 import org.ckulla.modelingutils.graphviz.graph.Graph
 import org.ckulla.modelingutils.graphviz.graph.Edge
 import org.ckulla.modelingutils.graphviz.graph.Node
 import org.ckulla.modelingutils.graphviz.graph.Attribute
 import org.ckulla.modelingutils.graphviz.graph.Element
-
-import org.ckulla.modelingutils.graphviz.util.CommandExecutor
+import org.ckulla.modelingutils.graphviz.util.CommandRunner
 
 import static org.ckulla.modelingutils.graphviz.AttributeNames.*
 
 class GraphToDot {
 	
-	@Inject CommandExecutor executor
+	@Inject CommandRunner commandRunner
 	
 	int id_
 	
@@ -28,9 +24,7 @@ class GraphToDot {
 	
 	def runDot (File outputPath, List<Graph> graphs, String name, String outputFormat) {
 		val outputFile = toFile (outputPath, graphs, name)
-		executor.execute(
-			newArrayList (
-				dotCommandProvider.dotCommand, 
+		commandRunner.run(dotCommandProvider.getDotCommand( 
 				"-Gcharset=latin1",
 				"-T" + outputFormat, 
 				"-o" + name + "." + outputFormat, 

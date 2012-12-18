@@ -23,6 +23,8 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 public class EcoreToDotGenerator implements IWorkflowComponent {
 
 	Logger log = Logger.getLogger (EcoreToDotGenerator.class);
@@ -107,10 +109,28 @@ public class EcoreToDotGenerator implements IWorkflowComponent {
 				if (dotCommand != null)
 					bind (IDotCommandProvider.class).toInstance (new IDotCommandProvider() {
 						
-						@Override
-						public String getDotCommand() {
-							return dotCommand;
+
+						private List<String> join (List<String> a, List<String> b) {
+							List<String> l = Lists.newArrayList ();
+							for (String s : a)
+								l.add (s);
+							for (String s : b)
+								l.add (s);
+							return l;
 						}
+						
+						@Override
+						public List<String> getDotCommand(String ...options) {
+							return join (newArrayList (dotCommand), toList (options));
+						}
+						
+						private List<String> toList (String ...options) {
+							List<String> l = Lists.newArrayList ();
+							for (String s : options)
+								l.add (s);
+							return l;
+						}
+						
 					});
 			}
 			

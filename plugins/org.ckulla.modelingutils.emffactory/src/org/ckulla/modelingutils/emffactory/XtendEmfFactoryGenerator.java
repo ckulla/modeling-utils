@@ -4,6 +4,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -44,24 +45,36 @@ public class XtendEmfFactoryGenerator implements IWorkflowComponent {
 		Resource resource = resSet.getResource(URI.createURI(genModel), true);
 		final GenModel genModel = (GenModel) EcoreUtil.getObjectByType(resource.getContents(), GenModelPackage.Literals.GEN_MODEL);
 		
-		final Generator generator = Guice.createInjector().getInstance(Generator.class);
-		if (outputFolder != null) {
-			generator.setOutputFolder(outputFolder);
-		}
 		log.info("Generating Xtend EMF factory code for "+this.genModel);
 
 		for (GenPackage p : genModel.getGenPackages()) {
-			doGenerate(p, generator, genModel);
+			doGenerate(p);
 		}
 	}
 
-	public void doGenerate (GenPackage p, Generator generator, GenModel genModel) {
+	public void doGenerate (GenPackage p) {
 		log.info("Generating factory for package " +  getFQPackageName (p.getEcorePackage()));
-		generator.generateFactory(p, genModel);	
+		createGenerator().generateFactory(p, getGenModel (p));	
 		
 		for (GenPackage nestedPackage : p.getNestedGenPackages()) {
-			doGenerate(nestedPackage, generator, genModel);
+			doGenerate(nestedPackage);
 		}		 
+	}
+
+	protected GenModel getGenModel (GenPackage p) {
+		EObject o = p;
+		while (!(o instanceof GenModel)) {
+			o = o.eContainer();
+		}
+		return (GenModel) o;
+	}
+	
+	protected Generator createGenerator () {
+		Generator generator = Guice.createInjector().getInstance(Generator.class);
+		if (outputFolder != null) {
+			generator.setOutputFolder(outputFolder);
+		}
+		return generator;
 	}
 	
 	public String getFQPackageName (EPackage p) {

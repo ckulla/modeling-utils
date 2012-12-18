@@ -42,13 +42,13 @@ class FactoryGeneratorTest {
 		assertEquals ('''
 			package org.ckulla.modelingutils.emffactory.test.foo.util
 			
-			import org.ckulla.modelingutils.emffactory.test.foo.Baz
+			import org.ckulla.modelingutils.emffactory.test.foo.Bar
 			import org.ckulla.modelingutils.emffactory.test.foo.FooFactory
 			
 			class FooFactoryXtend {
 				
-				def baz((Baz) => void initializer) {
-					initialize (FooFactory::eINSTANCE.createBaz(), initializer)
+				def bar((Bar) => void initializer) {
+					initialize (FooFactory::eINSTANCE.createBar(), initializer)
 				}
 				
 				def <T> T initialize (T t, (T) => void initializer) {

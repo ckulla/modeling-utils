@@ -13,6 +13,7 @@ class XtendEmfFactoryGeneratorTest {
 	def void test () {	
 		new Mwe2Launcher().run(newArrayList ("src/org/ckulla/modelingutils/emffactory/XtendEmfFactoryGeneratorTest.mwe2"));
 		assertTrue (new File ("test-gen/org/ckulla/modelingutils/emffactory/test/foo/util/FooFactoryXtend.xtend").exists())
+		assertTrue (new File ("test-gen/org/ckulla/modelingutils/emffactory/test/foo/baz/util/BazFactoryXtend.xtend").exists())
 	}
 	
 	@After

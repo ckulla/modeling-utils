@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.ckulla.modelingutils.emffactory.test/test-gen"
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/org.ckulla.modelingutils.emffactory.test/test-gen"
     modelPluginID="org.ckulla.modelingutils.emffactory.test" modelName="XtendFactoryTest"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false">
   <foreignModel>XtendFactoryTest.ecore</foreignModel>
   <genPackages prefix="Foo" basePackage="org.ckulla.modelingutils.emffactory.test"
       disposableProviderFactory="true" ecorePackage="XtendFactoryTest.ecore#/">
-    <genClasses ecoreClass="XtendFactoryTest.ecore#//bar"/>
-    <genClasses ecoreClass="XtendFactoryTest.ecore#//baz"/>
+    <genClasses image="false" ecoreClass="XtendFactoryTest.ecore#//Bar"/>
+    <genClasses ecoreClass="XtendFactoryTest.ecore#//Barr"/>
+    <nestedGenPackages prefix="Baz" basePackage="org.ckulla.modelingutils.emffactory.test.foo"
+        disposableProviderFactory="true" ecorePackage="XtendFactoryTest.ecore#//baz">
+      <genClasses image="false" ecoreClass="XtendFactoryTest.ecore#//baz/Baz"/>
+    </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

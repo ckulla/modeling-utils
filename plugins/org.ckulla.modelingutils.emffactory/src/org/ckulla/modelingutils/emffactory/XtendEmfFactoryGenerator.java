@@ -4,6 +4,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModelPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -50,11 +51,26 @@ public class XtendEmfFactoryGenerator implements IWorkflowComponent {
 		log.info("Generating Xtend EMF factory code for "+this.genModel);
 
 		for (GenPackage p : genModel.getGenPackages()) {
-			log.info("Generating factory for package " +  p.getEcorePackage().getName());
-			generator.generateFactory(p, genModel);			
+			doGenerate(p, generator, genModel);
 		}
 	}
 
+	public void doGenerate (GenPackage p, Generator generator, GenModel genModel) {
+		log.info("Generating factory for package " +  getFQPackageName (p.getEcorePackage()));
+		generator.generateFactory(p, genModel);	
+		
+		for (GenPackage nestedPackage : p.getNestedGenPackages()) {
+			doGenerate(nestedPackage, generator, genModel);
+		}		 
+	}
+	
+	public String getFQPackageName (EPackage p) {
+		if (p.eContainer() instanceof EPackage) 
+			return getFQPackageName ((EPackage) p.eContainer()) + "." + p.getName();
+		else
+			return p.getName();
+	}
+	
 	@Override
 	public void postInvoke() {
 	}

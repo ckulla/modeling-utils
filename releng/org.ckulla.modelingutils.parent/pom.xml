@@ -19,6 +19,7 @@
 	</properties>
 
 	<modules>
+		<!-- plugins -->
 		<module>../../plugins/org.ckulla.modelingutils.cppcodegen</module>
 		<module>../../plugins/org.ckulla.modelingutils.ecoregenerator</module>
 		<module>../../plugins/org.ckulla.modelingutils.emffactory</module>

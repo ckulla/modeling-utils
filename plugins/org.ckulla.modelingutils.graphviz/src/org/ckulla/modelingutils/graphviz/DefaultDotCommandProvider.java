@@ -26,7 +26,7 @@ public class DefaultDotCommandProvider implements IDotCommandProvider {
 		}
 		if (System.getenv("GRAPHVIZ_PATH") != null && System.getenv("GRAPHVIZ_PATH").length() > 0) {
 			try {
-				if (hasDot(concatPaths (System.getenv("GRAPHVIZ_PATH"), "dot"))) 
+				if (hasDot(concatPaths (System.getenv("GRAPHVIZ_PATH"), "dot"), "-V")) 
 					return join (newArrayList (concatPaths (System.getenv("GRAPHVIZ_PATH"), "dot")), toList (options));
 			} catch (Exception ex) {
 			}

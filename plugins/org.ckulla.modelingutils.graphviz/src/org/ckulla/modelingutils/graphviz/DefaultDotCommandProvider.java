@@ -38,7 +38,7 @@ public class DefaultDotCommandProvider implements IDotCommandProvider {
 	}
 	
 	boolean hasDot (String... command) throws IOException, InterruptedException {
-		return runCommand (command).matches("(?s)dot - graphviz version.*");
+		return runCommand (command).toUpperCase().matches("(?s)DOT - GRAPHVIZ VERSION.*");
 	}
 	
 	String runCommand (String ...command) throws IOException, InterruptedException {
